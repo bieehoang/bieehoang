@@ -1,0 +1,225 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" />
+    <link rel="stylesheet" href="./themify-icons-font/themify-icons/themify-icons.css">
+    <!-- <link rel="stylesheet" href="./assets/style/main.css"> --> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="/dist/output.css" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg_profile:"#2B2B2B",
+        menu:"#212121",
+        btcolor:"#23CE6B",
+        bluecolor:"#016FB9",
+        bg_black:"#E5E5E5",
+        bg_cv:"#3F3D56"
+            }
+          }
+        }
+      };
+    </script>
+</head>
+
+<body>
+    <div class="bg-black ">
+        <div class="container mx-auto flex items-center justify-between h-44 pl-2 pr-2 md:pl-4 lg:pl-24 md:pr-4 lg:pr-24" >
+            <div class="ml-8 md:ml-0">
+                <img class="w-12 md:w-28" src="./assets/image/logo.png" alt="">
+            </div>
+
+            <ul id="menu" class="
+        fixed top-0 left-0 md:bottom-5
+        flex flex-col justify-center items-center
+        bg-green-500 w-full h-screen
+        md:bg-transparent md:relative md:h-auto
+        md:flex-row md:justify-end md:flex
+        ">
+                <li><a class="block text-white md:hover:text-btcolor hover:opacity-50  p-4  md:text-white" href="#">HOME</a></li>
+                <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#">ABOUT</a></li>
+                <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#">PORTFOLIO</a></li>
+                <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#" >CONTACT</a></li>
+                <li><button class="block text-white md:bg-btcolor hover:bg-green-300 bg-bg_cv  px-12 py-2 rounded-3xl">CV</button></li>
+            </ul>
+            <div id="menu-icon" class="z-10 md:hidden text-white  mr-10 md:mr-24">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="bg-black">
+        <div class="container mx-auto  pl-10 md:pl-4 lg:pl-24 pr-10 md:pr-4 lg:pr-24">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-14 pt-24 items-center">
+                <div class="">
+                    <div class="text-white text-base">I'm</div>
+                    <h1 class="text-white text-5xl md:text-7xl">Hoang Trung Quy</h1>
+                    <div class="text-green-500 py-2.5 text-xl">Learning programming with my passion</div>
+                    <div class="text-white text-base">I'm a computer techniclan with a focus on web development with
+                        JavaScript</div>
+                    <button class="text-white px-12 py-2 rounded-3xl bg-green-500 my-9 text-base hover:bg-green-300">Contact</button>
+                </div>
+                <div class="hidden md:block ml-2">
+                    <div>
+                        <img id="img-slider" class=" rounded-lg" src="./assets/image/banner-5.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-14 mt-14 md:mt-52 text-center md:text-left">
+                <div class="">
+                    <div>
+                        <h2 class="text-2xl text-white border-b-red-500  border-b-2 inline">About me</h2>
+
+                        <p class="py-4 text-lg text-white">My name is Trung Quy, I'm a
+                            computer
+                            technician with a great
+                            passion
+                            for programming. <br>
+                            I get all degrees by self learning on Internet . <br>
+                            Hobbies: Playing sports, watching movie, listening to music, playing game.
+                        </p>
+                        <p class="py-4 text-lg text-white">Improved my skills as a Front-End and Back-End developer.
+                        </p>
+                        <p class="py-4 text-lg text-white">I develop websites and applications using
+                            HTML, CSS, and JavaScript.
+                        </p>
+                        <p class="text-green-500 text-lg">Here are my main skills:</p>
+                    </div>
+                    <div class="flex justify-center md:justify-start pt-4">
+                        <img class="pr-3 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/banner-1.png" alt="">
+                        <img class="px-3 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/banner-2.png" alt="">
+                        <img class="px-3 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/banner-3.png" alt="">
+                        <img class="px-3 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/banner-4.png" alt="">
+                        <img class="px-3 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/banner-5.png" alt="">
+                    </div>
+                </div>
+                <div class="flex justify-center md:justify-start">
+                    <img  class="w-200  md:w-full  rounded-lg md:h-96" src="./assets/image/picture-main.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-black ">
+        <h3 class="text-white text-center pt-20 text-4xl pb-8 ">My portfolio</h3>
+        <div class="container mx-auto  pl-6 md:pl-4 lg:pl-24 pr-6 md:pr-4 lg:pr-24">
+            <div class="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-14 mt-24 ml-10 md:ml-0  mr-10 md:mr-0">
+                
+                <div class=" rounded-lg bg-bg_profile flex flex-col px-4">
+                    <div class="flex justify-between pt-4">
+                        <img class="hover:opacity-50 hover:cursor-pointer" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="">
+                        <a href="">
+                            <img class="hover:opacity-50 hover:cursor-pointer w-9" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="">
+                        </a>
+                    </div>
+                    <div class="text-white w-full h-full pt-10">
+                        <p>BAMBOO LOGISTIC</p>
+                        <p class="pt-4">Developer, Design, Tester</p>
+                        <p class="border-b-green-500  border-b-2 inline">Position: Developer</p>
+                    </div>
+                    <div class="text-white flex  mt-4 mb-4">
+                        <p class="pr-4">HTML5</p>
+                        <p class="pr-4">CSS3</p>
+                        <p class="pr-4">JavaScript</p>
+                        <p class="pr-4">NodeJS</p>
+                    </div>
+                </div>
+                <div class=" rounded-lg bg-bg_profile flex flex-col px-4">
+                    <div class="flex justify-between pt-4">
+                        <img class="hover:opacity-50 hover:cursor-pointer object-cover" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="">
+                        <a href="">
+                            <img class="hover:opacity-50 hover:cursor-pointer w-9" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="">
+                        </a>
+                    </div>
+                    <div class="text-white  w-full h-full pt-10">
+                        <p>BAMBOO SERVICE</p>
+                        <p class="pt-4">Developer, Design, Tester</p>
+                        <p class="border-b-green-500  border-b-2 inline">Position: Developer</p>
+                    </div>
+                    <div class="text-white flex  mt-4 mb-4">
+                        <p class="pr-4">HTML5</p>
+                        <p class="pr-4">CSS3</p>
+                        <p class="pr-4">JavaScript</p>
+                    </div>
+                </div>
+                <div class=" rounded-lg bg-bg_profile flex flex-col px-4">
+                    <div class="flex justify-between pt-4">
+                        <img class="hover:opacity-50 hover:cursor-pointer object-cover" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="">
+                        <a href="">
+                            <img class="hover:opacity-50 hover:cursor-pointer w-9" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="">
+                        </a>
+                    </div>
+                    <div class="text-white  w-full h-full pt-10">
+                        <p>MYCV</p>
+                        <p class="pt-4">Developer, Design, Tester</p>
+                        <p class="border-b-green-500  border-b-2 inline">Position: Developer</p>
+                    </div>
+                    <div class="text-white flex  mt-4 mb-4">
+                        <p class="pr-4">HTML5</p>
+                        <p class="pr-4">CSS</p>
+                        <p class="pr-4">JavaScript</p>
+                    </div>
+                </div>
+              
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-black">
+        <div class="text-center">
+            <h1 class="text-white text-4xl pt-12"> 
+                    Contact me
+            </h1>
+            <div class="text-green-400 mb-12">If you've seen my potential or want to talk to me, don't hesitate to
+                send
+                me a message.</div>
+            <div class="flex flex-col md:flex-row justify-center items-center">
+                <button
+                    class="bg-btcolor rounded-xl md:w-60 w-2/4 h-20 m-2 flex flex-col md:flex-row justify-center items-center hover:bg-green-400 hover:cursor-pointer"><img
+                        alt="" class="pr-2 pl-2 ti-email"> 
+                        trungquylsd@gmail.com</button>
+                <button
+                    class="bg-btcolor rounded-xl md:w-60 w-2/4 h-20 m-2  flex flex-col md:flex-row justify-center items-center hover:bg-green-400 hover:cursor-pointer"><img
+                        alt="" class="md:pr-5 ti-tablet">(+84) 32 9900 090</button>
+            </div>
+        </div>
+    </div>
+    <div class="bg-black">
+        <div class="ml-10 md:ml-24  mr-10 md:mr-24">
+            <p class="  text-center text-white pt-24 text-2xl mb-5">Get in touch using the form below</p>
+            <form action="">
+                <div class="md:flex md:justify-center">
+                    <input class="border border-white w-full rounded-md mb-5 md:w-2/5" type="text" name=""
+                        placeholder=" Email" id="">
+                </div>
+                <div class="md:flex md:justify-center mb-20">
+                    <input class="border border-white w-full rounded-md  md:w-2/5 h-36" type="text" name=""
+                        placeholder=" Leave your message" id="">
+                </div>
+            </form>
+        </div>
+        <div class="flex justify-center">
+            <p class="text-white bg-btcolor rounded-3xl text-center leading-10 w-44 h-10 mb-16 hover:bg-green-400 hover:cursor-pointer">TO SEND</p>
+        </div>
+        <div class="bg-bg_profile pt-7 md:flex justify-between items-center md:h-20 md:pl-12 md:pr-12">
+            <p class="text-white text-1xl  text-center md:pd-1">Trung Quy Hoang</p>
+            <p class="text-white center text-2xl mt-5 md:mt-0">This site was copyright</p>
+            <div class="flex pt-6 md:pt-0">
+                <a href=""><img class="mr-2 hover:opacity-50 hover:cursor-pointer" src="./assets/image/Rectangle-1.png" alt=""></a>
+                <a href="#"><img class="mr-2 hover:opacity-50 hover:cursor-pointer" src="./assets/image/Rectangle-2.png" alt=""></a>
+                <a href="#"><img class="mr-2 hover:opacity-50 hover:cursor-pointer" src="./assets/image/Rectangle-3.png" alt=""></a>
+                <a href=""></a><img class="mr-2 hover:opacity-50 hover:cursor-pointer" src="./assets/image/Rectangle-4.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="./app.js"></script>
+</body>
+
+</html>
