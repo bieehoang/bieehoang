@@ -6,6 +6,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./themify-icons-font/themify-icons/themify-icons.css">
     <link rel="icon" href="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" />
+    <link rel="stysheet" href="./assets/css/style.css">
     <link href="./dist/output.css" rel="stylesheet">
     <title>AboutMe.IO</title>
     <script>
@@ -17,6 +18,7 @@
             menu:"#212121",
             btcolor:"#23CE6B",
             bluecolor:"#016FB9",
+            hovercolor:"#fff",
             bg_black:"#E5E5E5",
             bg_cv:"#3F3D56"
             }
@@ -34,13 +36,14 @@
             </div>
 
             <ul id="menu" class="
-        fixed top-0 left-0 md:bottom-5
-        flex flex-col justify-center items-center
-        bg-green-500 w-full h-screen
-        md:bg-transparent md:relative md:h-auto
-        md:flex-row md:justify-end md:flex
-        ">
-                <li><a class="block text-white md:hover:text-btcolor hover:opacity-50  p-4  md:text-white" href="#">HOME</a></li>
+                fixed top-0 left-0 md:bottom-5
+                flex flex-col justify-center items-center
+                bg-green-500 w-full h-screen
+                md:bg-transparent md:relative md:h-auto
+                md:flex-row md:justify-end md:flex block
+                hidden
+               ">
+                <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#">HOME</a></li>
                 <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#">ABOUT</a></li>
                 <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#">PORTFOLIO</a></li>
                 <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#" >CONTACT</a></li>
@@ -58,11 +61,11 @@
         <div class="container mx-auto  pl-10 md:pl-4 lg:pl-24 pr-10 md:pr-4 lg:pr-24">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-14 pt-24 items-center">
                 <div class="">
-                    <div class="text-white text-base">I'm</div>
-                    <h1 class="text-white text-5xl md:text-7xl">Hoang Trung Quy</h1>
-                    <div class="text-green-500 py-2.5 text-xl">Learning programming with my passion</div>
-                    <div class="text-white text-base">I'm a computer techniclan with a focus on web development with
+                    <div class="text-white text-base text-3xl">I'm</div>
+                    <h1 class="text-white text-5xl md:text-5xl">QUY TRUNG HOANG</h1>
+                    <div class="text-white text-base pt-4">I'm a computer techniclan have focusing on web development with
                         JavaScript, also I'm going to be a Pythonista</div>
+                        <div class="text-green-500 py-2.5 text-xl">Learning programming with my passion</div>
                     <button class="text-white px-12 py-2 rounded-3xl bg-green-500 my-9 text-base hover:bg-green-300">Contact</button>
                 </div>
                 <div class="hidden md:block ml-2">
@@ -81,13 +84,9 @@
                             technician with a great
                             passion
                             for programming. <br>
-                            I get all degrees by self learning on Internet. And trying to be Senior Fullstack Developer <br>
-                            Hobbies: Playing sports, watching movie, listening to music, playing game.
+                            I get all degrees by self learning. And trying to be Senior Fullstack Developer <br>
                         </p>
                         <p class="py-4 text-lg text-white">Improved my skills as a Front-End and Back-End developer.
-                        </p>
-                        <p class="py-4 text-lg text-white">I develop websites and applications using
-                            HTML, CSS, and JavaScript. This project MyCV here is a project was developed using that.
                         </p>
                         <p class="text-green-500 text-lg">Here are my main skills:</p>
                     </div>
@@ -102,7 +101,7 @@
                     </div>
                 </div>
                 <div class="flex items-center justify-center md:justify-center items-center">
-                    <img  class="w-200  md:w-150  rounded-lg md:h-96" src="./assets/image/banner-6.png" style="background-color: white" alt="">
+                    <img  class="w-200  md:w-150  rounded-lg md:h-96" src="./assets/image/img_master.jpeg" style="background-color: white" alt="">
                 </div>
             </div>
         </div>
@@ -116,27 +115,24 @@
                 <div class=" rounded-lg bg-bg_profile flex flex-col px-4">
                     <div class="flex justify-between pt-4">
                         <a href="https://github.com/Qiese/bamboologistics">
-                        <img class="hover:opacity-50 hover:cursor-pointer" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="">
+                        <img class="hover:opacity-50 hover:cursor-pointer" src="./assets/image/bamboo_todo.png" alt="">
                         </a>
                     </div>
                     <div class="text-white w-full h-full pt-10">
-                        <p>BAMBOO LOGISTIC</p>
+                        <p>BAMBOO TO-DO</p>
                         <p class="pt-4">Developer, Design, Tester</p>
                         <p class="border-b-green-500  border-b-2 inline">Position: Developer</p>
                     </div>
                     <div class="text-white flex  mt-4 mb-4">
                         <p class="pr-4">HTML5</p>
-                        <p class="pr-4">CSS3</p>
-                        <p class="pr-4">JavaScript</p>
-                        <p class="pr-4">ReactJS</p>
-                        <p class="pr-4">NodeJS</p>
-                        <p class="pr-4">Git</p>
+                        <p class="pr-4">SCSS</p>
+                        <p class="pr-4">Django</p>
                     </div>
                 </div>
                 <div class=" rounded-lg bg-bg_profile flex flex-col px-4">
                     <div class="flex justify-between pt-4">
                         <a href="https://github.com/Qiese/bamboo__service">
-                        <img class="hover:opacity-50 hover:cursor-pointer object-cover" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="">
+                        <img class="hover:opacity-50 hover:cursor-pointer object-cover" src="./assets/image/bamboo_service.png" alt="">
                         </a>
                     </div>
                     <div class="text-white  w-full h-full pt-10">
@@ -148,14 +144,12 @@
                         <p class="pr-4">HTML5</p>
                         <p class="pr-4">SCSS</p>
                         <p class="pr-4">JavaScript</p>
-                        <p class="pr-4">Git</p>
-
                     </div>
                 </div>
                 <div class=" rounded-lg bg-bg_profile flex flex-col px-4">
                     <div class="flex justify-between pt-4">
                         <a href="https://github.com/Qiese/mycv">
-                        <img class="hover:opacity-50 hover:cursor-pointer object-cover" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="">
+                        <img class="hover:opacity-50 hover:cursor-pointer object-cover" src="./assets/image/mycv.png" alt="">
                         </a>
                     </div>
                     <div class="text-white  w-full h-full pt-10">
@@ -167,24 +161,21 @@
                         <p class="pr-4">HTML5</p>
                         <p class="pr-4">CSS</p>
                         <p class="pr-4">JavaScript</p>
-                        <p class="pr-4">Git</p>
-
                     </div>
                 </div>
                 <div class=" rounded-lg bg-bg_profile flex flex-col px-4">
                     <div class="flex justify-between pt-4">
                         <a href="https://github.com/Qiese/PythonTutorial">
-                        <img class="hover:opacity-50 hover:cursor-pointer object-cover" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="">
+                        <img class="hover:opacity-50 hover:cursor-pointer object-cover" src="./assets/image/python_turtorial.png" alt="">
                         </a>
                     </div>
                     <div class="text-white  w-full h-full pt-10">
                         <p>Python Tutorial</p>
-                        <p class="pt-4">Developer, Design</p>
+                        <p class="pt-4">Developer</p>
                         <p class="border-b-green-500  border-b-2 inline pt">Position: Developer</p>
                     </div>
                     <div class="text-white flex  mt-4 mb-4">
-                        <p class="pr-4">Django</p>
-                        <p class="pr-4">pyGame</p>
+                        <p class="pr-4">Python</p>
                         <p class="pr-4">Git</p>
 
                     </div>
@@ -192,7 +183,7 @@
                 <div class=" rounded-lg bg-bg_profile flex flex-col px-4">
                     <div class="flex justify-between pt-4">
                         <a href="https://github.com/Qiese/Music-Application">
-                        <img class="hover:opacity-50 hover:cursor-pointer object-cover" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="">
+                        <img class="hover:opacity-50 hover:cursor-pointer object-cover" src="./assets/image/bamboo_music.png" alt="">
                         </a>
                     </div>
                     <div class="text-white  w-full h-full pt-10">
@@ -204,14 +195,12 @@
                         <p class="pr-4">HTML5</p>
                         <p class="pr-4">SCSS</p>
                         <p class="pr-4">JavaScript</p>
-                        <p class="pr-4">Git</p>
-
                     </div>
                 </div>
                 <div class=" rounded-lg bg-bg_profile flex flex-col px-4">
                     <div class="flex justify-between pt-4">
                         <a href="https://github.com/Qiese/bamboo-store">
-                        <img class="hover:opacity-50 hover:cursor-pointer object-cover" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="">
+                        <img class="hover:opacity-50 hover:cursor-pointer object-cover" src="./assets/image/bamboo_store.jpg" alt="">
                         </a>
                     </div>
                     <div class="text-white  w-full h-full pt-10">
@@ -223,9 +212,6 @@
                         <p class="pr-4">HTML5</p>
                         <p class="pr-4">SCSS</p>
                         <p class="pr-4">JavaScript</p>
-                        <p class="pr-4">jQuery</p>
-                        <p class="pr-4">Git</p>
-                        
                     </div>
                 </div>
               
@@ -240,11 +226,11 @@
             <div class="text-green-400 mb-12">If you've seen my potential or want to talk to me, don't hesitate to
                 send
                 me a message.</div>
-            <div class="flex flex-col md:flex-row justify-center items-center">
+            <div class="flex flex-col md:flex-row justify-center items-center ">
                 <button
-                    class="bg-btcolor rounded-xl text-center md:w-60 w-2/4 h-20 m-2 flex flex-col md:flex-row justify-center items-center hover:bg-green-400 hover:cursor-pointer"><img
+                    class="bg-btcolor inline rounded-xl text-center md:w-60 w-2/4 h-20 m-2 flex flex-col md:flex-row justify-center items-center hover:bg-green-400 hover:cursor-pointer"><img
                         alt="" class="pr-2 pl-2"> 
-                        trungquylsd@gmail.com</button>
+                        dev.bieehoang.io@gmail.com</button>
                 <button
                     class="bg-btcolor rounded-xl md:w-60 w-2/4 h-20 m-2  flex flex-col md:flex-row justify-center items-center hover:bg-green-400 hover:cursor-pointer"><img
                         alt="" class="md:pr-1s">(+84) 32 9900 090</button>
@@ -266,12 +252,17 @@
             </form>
         </div>
         <div class="flex justify-center">
-            <p class="text-white bg-btcolor rounded-3xl text-center leading-10 w-44 h-10 mb-16 hover:bg-green-400 hover:cursor-pointer">SEND</p>
+            <p class="text-white bg-btcolor rounded-3xl text-center items- leading-10 w-44 h-10 mb-16 hover:bg-green-400 hover:cursor-pointer">SEND</p>
         </div>
-        <div class="bg-bg_profile pt-7 md:flex justify-between items-center md:h-20 md:pl-12 md:pr-12">
-            <p class="text-white text-1xl  text-center md:pd-1">Trung Quy Hoang</p>
-            <p class="text-white center text-2xl mt-5 md:mt-0">This site was copyright</p>
-            <div class="flex pt-6 md:pt-0">
+        <div class="bg-bg_profile pt-7 flex-col justify-center items-center md:h-30 md:pl-12 md:pr-12">
+            <div class="">
+                <p class="text-white flex justify-center">Powered by / 
+                    <a href="https://github.com/Qiese" target="blank" class="text-yellow-400 hover:opacity-50">
+                        bieehoang
+                    </a>
+                </p>
+            </div>
+            <div class="flex p-6 md:pt-4 justify-center">
                 <a href=""><img class="mr-2 hover:opacity-50 hover:cursor-pointer" src="./assets/image/Rectangle-1.png" alt=""></a>
                 <a href="#"><img class="mr-2 hover:opacity-50 hover:cursor-pointer" src="./assets/image/Rectangle-2.png" alt=""></a>
                 <a href="#"><img class="mr-2 hover:opacity-50 hover:cursor-pointer" src="./assets/image/Rectangle-3.png" alt=""></a>
