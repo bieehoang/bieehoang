@@ -1,1 +1,1 @@
-![Image](assets/mycv.png)
+![Image](mycv.png)
