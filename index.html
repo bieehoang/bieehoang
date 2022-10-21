@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script> -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./themify-icons-font/themify-icons/themify-icons.css">
     <link rel="icon" href="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" />
@@ -32,7 +33,9 @@
     <div class="bg-black ">
         <div class="container mx-auto flex items-center justify-between h-44 pl-2 pr-2 md:pl-4 lg:pl-24 md:pr-4 lg:pr-24" >
             <div class="ml-8 md:ml-0">
-                <img class="w-12 md:w-28" src="./assets/image/logo.png" alt="">
+                <a href="#">
+                    <img class="w-12 md:w-28" src="./assets/image/logo.png" alt="">
+                </a>
             </div>
 
             <ul id="menu" class="
@@ -44,9 +47,9 @@
                 hidden
                ">
                 <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#">HOME</a></li>
-                <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#">ABOUT</a></li>
-                <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#">PORTFOLIO</a></li>
-                <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#" >CONTACT</a></li>
+                <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#about">ABOUT</a></li>
+                <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#portfolio">PORTFOLIO</a></li>
+                <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#contact" >CONTACT</a></li>
                 <li><button class="block text-white md:bg-btcolor hover:bg-green-300 bg-bg_cv  px-12 py-2 rounded-3xl">CV</button></li>
             </ul>
             <div id="menu-icon" class="z-10 md:hidden text-white  mr-10 md:mr-24">
@@ -57,18 +60,22 @@
             </div>
         </div>
     </div>
-    <div class="bg-black">
+    <div class="bg-black" id="about">
         <div class="container mx-auto  pl-10 md:pl-4 lg:pl-24 pr-10 md:pr-4 lg:pr-24">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-14 pt-24 items-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-14 pt-24 items-center flex justify-end">
                 <div class="">
                     <div class="text-white text-base text-2xl">I'm</div>
                     <h1 class="text-white text-3xl ">QUY TRUNG HOANG</h1>
                     <div class="text-white text-base pt-4">A computer techniclan have focusing on web development with
                         JavaScript, also I'm going to be a Pythonista</div>
                         <div class="text-green-500 py-2.5 text-xl">Learning programming with my passion</div>
-                    <button class="text-white px-12 py-2 rounded-3xl bg-green-500 my-9 text-base hover:bg-green-300">Contact</button>
+                    <button class="text-white px-12 py-2 rounded-3xl bg-green-500 my-9 text-base hover:bg-green-300">
+                        <a href="#contact">
+                            Contact
+                        </a>
+                    </button>
                 </div>
-                <div class="hidden md:block ml-2">
+                <div class="hidden md:block ml-2 pr-0">
                     <div>
                         <img id="img-slider" class=" rounded-lg" src="./assets/image/banner-5.png" alt="">
                     </div>
@@ -76,7 +83,7 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-14 mt-14 md:mt-52 text-center md:text-left">
                 <div class="">
-                    <div>
+                    <div class="">
                         <h2 class="text-2xl text-white border-b-red-500  border-b-2 inline">About me</h2>
 
                         <p class="py-4 text-lg text-white">My name is Trung Quy, I'm a
@@ -90,7 +97,7 @@
                         </p>
                         <p class="text-green-500 text-lg">Here are my main skills:</p>
                     </div>
-                    <div class="flex justify-center md:justify-start pt-4">
+                    <div class="flex justify-end md:justify-start pt-4">
                         <img class="pr-3 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/banner-1.png" alt="">
                         <img class="px-3 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/banner-2.png" alt="">
                         <img class="px-3 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/banner-3.png" alt="">
@@ -106,8 +113,7 @@
             </div>
         </div>
     </div>
-
-    <div class="bg-black ">
+    <div class="bg-black" id="portfolio">
         <h3 class="text-white text-center pt-20 text-4xl pb-8 " style="text-transform: uppercase; font-weight: 500;">My portfolio</h3>
         <div class="container mx-auto  pl-6 md:pl-4 lg:pl-24 pr-6 md:pr-4 lg:pr-24">
             <div class="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-14 mt-24 ml-10 md:ml-0  mr-10 md:mr-0">
@@ -217,14 +223,14 @@
               
                 </div>
             </div>
-        </div>
-    <div class="bg-black">
+    </div>
+    <div class="bg-black" id="contact">
         <div class="text-center">
             <h1 class="text-white text-4xl pt-12"> 
                     Contact me
             </h1>
             <div class="text-green-400 mb-12">
-                If you've seen my potential or want to talk to me, don't hesitate to sendme a message.
+                If you've seen my potential or want to talk to me, don't hesitate to send me a message.
             </div>
             <div class="flex flex-col md:flex-row justify-center items-center block">
                 <button class="bg-btcolor rounded-xl text-center md:w-60 w-2/4 h-20 m-2 flex flex-col md:flex-row justify-center items-center hover:bg-green-400 hover:cursor-pointer">
@@ -240,21 +246,11 @@
     </div>
     <div class="bg-black">
         <div class="ml-10 md:ml-24  mr-10 md:mr-24">
-            <p class="  text-center text-white pt-24 text-2xl mb-5">Get in touch using the form below</p>
-            <form action="">
-                <div class="md:flex md:justify-center">
-                    <input class="border border-white w-full rounded-md mb-5 md:w-2/5 " type="text" name=""
-                        placeholder=" Email" id="#">
-                </div>
-                <div class="md:flex md:justify-center mb-20">
-                    <input class="border border-white w-full rounded-md  md:w-2/5 h-36" type="text" name=""
-                        placeholder=" Leave your message" id="#">
-                </div>
-            </form>
+             <div class="badge-base LI-profile-badge " data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="bieehoang" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://vn.linkedin.com/in/bieehoang/en?trk=profile-badge">Quy H.</a></div>
         </div>
-        <div class="flex justify-center">
+        <!-- <div class="flex justify-center">
             <p class="text-white bg-btcolor rounded-3xl text-center items- leading-10 w-44 h-10 mb-16 hover:bg-green-400 hover:cursor-pointer">SEND</p>
-        </div>
+        </div> -->
         <div class="bg-bg_profile pt-7 flex-col justify-center items-center md:h-30 md:pl-12 md:pr-12">
             <div class="justify-center flex">
                 <p class="text-white">Powered by
@@ -264,7 +260,7 @@
                 </p>
             </div>
             <div class="flex p-6 md:pt-4 justify-center">
-                <a href="www.linkedin.com/bieehoang/"><img class="mr-2 hover:opacity-50 hover:cursor-pointer" src="./assets/image/Rectangle-1.png" alt=""></a>
+                <a href="https://linkedin.com/in/bieehoang/"><img class="mr-2 hover:opacity-50 hover:cursor-pointer" src="./assets/image/Rectangle-1.png" alt=""></a>
                 <a href="#"><img class="mr-2 hover:opacity-50 hover:cursor-pointer" src="./assets/image/Rectangle-2.png" alt=""></a>
                 <a href="#"><img class="mr-2 hover:opacity-50 hover:cursor-pointer" src="./assets/image/Rectangle-3.png" alt=""></a>
                 <a href=""></a><img class="mr-2 hover:opacity-50 hover:cursor-pointer" src="./assets/image/Rectangle-4.png" alt=""></a>
