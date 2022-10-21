@@ -13,12 +13,12 @@ menuIcon.addEventListener('click', function (e) {
 });
 
 var arrimg = [];
-arrimg[5] = './assets/image/banner-1.png';
-arrimg[1] = './assets/image/banner-2.png';
 arrimg[0] = './assets/image/banner-7.png';
+arrimg[1] = './assets/image/typescript.png';
 arrimg[2] = './assets/image/banner-3.png';
-arrimg[3] = './assets/image/banner-4.png';
+arrimg[3] = './assets/image/djangoproject.png';
 arrimg[4] = './assets/image/banner-5.png';
+arrimg[5] = './assets/image/banner-1.png';
 
 
 
