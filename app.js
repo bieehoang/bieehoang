@@ -20,8 +20,6 @@ arrimg[3] = './assets/image/djangoproject.png';
 arrimg[4] = './assets/image/banner-5.png';
 arrimg[5] = './assets/image/banner-1.png';
 
-
-
 var i = 0;
 var imgauto;
 
