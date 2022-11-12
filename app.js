@@ -14,8 +14,9 @@ menuIcon.addEventListener('click', function (e) {
 
 var arrimg = [];
 arrimg[0] = './assets/image/banner-7.png';
+arrimg[2] = './assets/image/linux.png';
 arrimg[1] = './assets/image/typescript.png';
-arrimg[2] = './assets/image/banner-3.png';
+arrimg[6] = './assets/image/banner-3.png';
 arrimg[3] = './assets/image/djangoproject.png';
 arrimg[4] = './assets/image/banner-5.png';
 arrimg[5] = './assets/image/banner-1.png';
