@@ -5,7 +5,7 @@
 > ## **ALWAYS UPDATE**
 > To see it you can copy the link I wrote here and paste in any browsers you are using.
 ## PREVIEW
-_Published at_  "https://qiese.github.io/bieehoang.cv/"
+_Published at_  "https://bieehoang.github.io/bieehoang"
 >
 >**Language programming/Framework**:
 > - TailwinCSS
