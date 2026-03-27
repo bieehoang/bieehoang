@@ -2,8 +2,8 @@
 >
 # MYCV
 ## A website I build for introduce myself, my projects and something else 
-> ## **ALWAYS UPDATE**
 # 🌤️ Weather: Ho Chi Minh 27.0°C | 0%→20% | 21:45 | Last update: 21:45 27/03/2026
+> ## **ALWAYS UPDATE**
 > To see it you can copy the link I wrote here and paste in any browsers you are using.
 ## PREVIEW
 _Published at_  "https://bieehoang.github.io/bieehoang"
