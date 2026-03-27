@@ -3,6 +3,7 @@
 # MYCV
 ## A website I build for introduce myself, my projects and something else 
 > ## **ALWAYS UPDATE**
+# 🌤️ Weather: Đang khởi tạo...
 > To see it you can copy the link I wrote here and paste in any browsers you are using.
 ## PREVIEW
 _Published at_  "https://bieehoang.github.io/bieehoang"
