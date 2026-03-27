@@ -2,7 +2,7 @@
 >
 # MYCV
 ## A website I build for introduce myself, my projects and something else 
-# 🌤️ Weather: Ho Chi Minh 27.0°C | 0%→20% | 21:45 | Last update: 21:45 27/03/2026
+# 🌤️ Weather: Ho Chi Minh 27.0°C | 0%→20% | 21:45 Florida 26.7°C | 0%→0% | 11:15 | Last update: 22:15 27/03/2026
 > ## **ALWAYS UPDATE**
 > To see it you can copy the link I wrote here and paste in any browsers you are using.
 ## PREVIEW
