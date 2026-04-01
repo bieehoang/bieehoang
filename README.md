@@ -1,4 +1,4 @@
-# 🌤️ Weather: Ho Chi Minh 27.3°C | 20%→20% | 22:32 | Florida 26.6°C | 0%→0% | 12:02 | Singapore 27.3°C | 22%→32% | 00:32 | Ho Chi Minh 27.0°C | 20%→0% | 00:02 
+# 🌤️ Weather: Ho Chi Minh 27.3°C | 20%→20% | 22:32 | Florida 26.6°C | 0%→0% | 12:02 | Singapore 27.3°C | 22%→32% | 00:32 | Ho Chi Minh 27.0°C | 20%→0% | 00:02 | Florida 28.4°C | 0%→0% | 13:32 
 ![mycv](https://user-images.githubusercontent.com/99249759/197262163-900e2e5f-b197-4921-abc2-131b40de44fa.png)
 >
 # MYCV
