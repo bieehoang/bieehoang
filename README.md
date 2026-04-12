@@ -1,4 +1,4 @@
-# 🌤️ Weather: Ho Chi Minh 27.0°C | 0%→20% | 06:30 | Last update: 06:30
+# 🌤️ Weather: Ho Chi Minh 28.0°C | 20%→20% | 07:00 | Last update: 07:00
 ![mycv](https://user-images.githubusercontent.com/99249759/197262163-900e2e5f-b197-4921-abc2-131b40de44fa.png)
 >
 # MYCV
