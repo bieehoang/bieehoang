@@ -4,11 +4,6 @@
 <!-- Animated header -->
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=200&section=header&text=bieehoang&fontSize=60&fontColor=ffffff&fontAlignY=38&desc=Developer%20%7C%20Designer%20%7C%20Creator&descAlignY=58&descSize=18&animation=fadeIn" width="100%"/>
 
-<!-- Typing animation -->
-<a href="https://bieehoang.github.io/bieehoang">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=38BDF8&center=true&vCenter=true&width=500&lines=Welcome+to+my+profile!+👋;I+build+things+for+the+web+🌐;Always+learning%2C+always+growing+🚀;Check+out+my+CV+below+⬇️" alt="Typing SVG" />
-</a>
-
 <br/>
 
 <!-- Profile image -->
@@ -43,17 +38,6 @@
 ![jQuery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
-
-</div>
-
----
-
-## 📊 GitHub Stats
-
-<div align="center">
-
-<img src="https://github-readme-stats.vercel.app/api?username=bieehoang&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=38bdf8&icon_color=38bdf8&text_color=ffffff" height="165"/>
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=bieehoang&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=38bdf8&text_color=ffffff" height="165"/>
 
 </div>
 
