@@ -1,267 +1,324 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script> -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./themify-icons-font/themify-icons/themify-icons.css">
-    <link rel="icon" href="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" />
-    <link href="./dist/output.css" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>bieehoang.cv</title>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-            bg_profile:"#2B2B2B",
-            menu:"#212121",
-            btcolor:"#23CE6B",
-            bluecolor:"#016FB9",
-            hovercolor:"#fff",
-            bg_black:"#E5E5E5",
-            bg_cv:"#3F3D56"
-            }
-          }
-        }
-      };
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bieehoang — Developer & Designer</title>
+  <link rel="icon" href="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
-
 <body>
-    <div class="bg-black">
-        <div class="container mx-auto flex items-center justify-between h-44 pl-2 pr-2 md:pl-4 lg:pl-24 md:pr-4 lg:pr-24" >
-            <div class="ml-8 md:ml-0">
-                <a href="#">
-                    <img class="w-12 md:w-28" src="./assets/image/logo.png" alt="">
-                </a>
-            </div>
 
-            <ul id="menu" class="
-                fixed top-0 left-0 md:bottom-5
-                flex flex-col justify-center items-center
-                bg-green-500 w-full h-screen text-2xl
-                md:bg-transparent md:relative md:h-auto
-                md:flex-row md:justify-end md:flex block
-                hidden
-               ">
-                <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#">HOME</a></li>
-                <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#about">ABOUT</a></li>
-                <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#portfolio">PORTFOLIO</a></li>
-                <li><a class="block text-white md:hover:text-btcolor hover:opacity-50 p-4  md:text-white" href="#contact" >CONTACT</a></li>
-                <li><button class="block text-black font-bold md:bg-btcolor hover:bg-green-300 bg-bg_cv px-12 py-2 rounded-3xl"><a href="#about">bieehoang.cv</a></button></li>
-            </ul>
-            <div id="menu-icon" class="z-10 md:hidden text-white  mr-10 md:mr-24">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </div>
-        </div>
-    </div>
-    <div class="bg-black" id="about">
-        <div class="container mx-auto pl-10 md:pl-4 lg:pl-24 pr-10 md:pr-4 lg:pr-24">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-14 pt-24 items-center flex justify-between">
-                <div class="">
-                    <div class="text-white text-base text-3xl">I'm</div>
-                    <h1 class="text-white text-3xl ">QUY TRUNG HOANG</h1>
-                    <div class="text-white text-base pt-4">A computer technician, web developer with passion for programming, science and computer science.</div>
-                    <button class="px-12 justify-center flex py-2 rounded-3xl bg-green-500 my-8 text-base text-black w-full">
-                        <a href="#portfolio">
-                            "Always try to make today is better than yesterday"
-                        </a>
-                    </button>
-                </div>
-                <div class="hidden md:block ml-2 pr-0">
-                    <div>
-                        <img id="img-slider" class=" rounded-lg" src="./assets/image/banner-5.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-14 mt-14 md:mt-48 text-center md:text-left pb-20">
-                <div class="">
-                    <div class="">
-                        <h2 class="text-2xl text-white border-b-red-500  border-b-2 inline">About me</h2>
+  <!-- ─── CURSOR ─── -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-                        <p class=" py-3 text-lg text-white">
-                            I have experience in developing, designing, testing and debugging web with JavaScript, besides I'm trying to be a Pythonista.<br> 
-                            My objective is simply to be the best developer that I can be and contribute to the technology industry with all that I know and can do. 
-                        </p>
-                        <p class="text-green-500 text-lg">Here are my main skills:</p>
-                    </div>
-                    <div class="flex justify-center md:justify-start pt-4">
-                        <img class="pr-3 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/banner-1.png" alt="JavaScript" title="JavaScript">
-                        <img class="pr-3 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/linux.png" alt="Linux" title="Linux">
-                        <img class="px-2 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/banner-7.png" alt="Python" title="Python">
-                        <img class="px-2 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/djangoproject.png" alt="Django" title="Djano">
-                        <img class="px-2 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/banner-3.png" alt="Git" title="Git">
-                        <img class="px-2 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/banner-2.png" alt="SCSS" title="SCSS">
-                        <img class="px-2 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/banner-4.png" alt="HTML5" title="HTML5">
-                        <img class="px-2 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/banner-5.png" alt="Nodejs" title="Nodejs">
-                        <img class="px-2 h-7 hover:opacity-50 hover:cursor-pointer" src="./assets/image/typescript.png" alt="typescript" title="Typescript">
-                    </div>
-                </div>
-                <div class="flex items-center justify-center md:justify-center items-center">
-                    <img  class="w-199 md:150 rounded-lg md:h-96" src="./assets/image/img_master.jpeg" style="background-color: white" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="bg-black pt-19 " id="portfolio">
-        <h4 class="text-white text-center text-4xl " style="text-transform: uppercase; font-weight: 500;">My portfolio</h3>
-        <div class="container mx-auto  pl-5 md:pl-4 lg:pl-24 pr-6 md:pr-4 lg:pr-24">
-            <div class="grid grid-cols0  md:grid-cols-2 lg:grid-cols-3 gap-14 mt-6 ml-10 md:ml-0  mr-10 md:mr-0">
-                <div class=" rounded-lg bg-bg_profile flex flex-col px-3">
-                    <div class="flex justify-between pt-3">
-                        <a href="https://github.com/Qiese/django.bamboo_todo" target="_blank">
-                        <img class="hover:opacity-49 hover:cursor-pointer" src="./assets/image/bamboo_todo.png" alt="">
-                        </a>
-                    </div>
-                    <div class="text-white w-full h-full pt-9">
-                        <p class="font-semibold text-1xl">BAMBOO TO-DO</p>
-                        <p class="pt-3">Developer, Designer, Tester</p>
-                        <p class="border-b-green-499  border-b-2 inline">Position: Developer</p>
-                    </div>
-                    <div class="text-white flex  mt-3 mb-4">
-                        <p class="pr-3">HTML5</p>
-                        <p class="pr-3">SCSS</p>
-                        <p class="pr-3">Django</p>
-                    </div>
-                </div>
-                <div class=" rounded-lg bg-bg_profile flex flex-col px-3">
-                    <div class="flex justify-between pt-3">
-                        <a href="https://github.com/Qiese/bamboo__service" target="_blank">
-                        <img class="hover:opacity-49 hover:cursor-pointer object-cover" src="./assets/image/bamboo_service.png" alt="">
-                        </a>
-                    </div>
-                    <div class="text-white  w-full h-full pt-9">
-                        <p class="font-semibold text-1xl">BAMBOO SERVICE</p>
-                        <p class="pt-3">Developer, Designer, Tester</p>
-                        <p class="border-b-green-499  border-b-2 inline pt">Position: Developer</p>
-                    </div>
-                    <div class="text-white flex  mt-3 mb-4">
-                        <p class="pr-3">HTML5</p>
-                        <p class="pr-3">SCSS</p>
-                        <p class="pr-3">JavaScript</p>
-                    </div>
-                </div>
-                <div class=" rounded-lg bg-bg_profile flex flex-col px-3">
-                    <div class="flex justify-between pt-3">
-                        <a href="https://github.com/Qiese/mycv" target="_blank">
-                        <img class="hover:opacity-49 hover:cursor-pointer object-cover" src="./assets/image/mycv.png" alt="">
-                        </a>
-                    </div>
-                    <div class="text-white  w-full h-full pt-9">
-                        <p class="font-semibold text-1xl">MYCV</p>
-                        <p class="pt-3">Developer, Designer, Tester</p>
-                        <p class="border-b-green-499  border-b-2 inline pt">Position: Developer</p>
-                    </div>
-                    <div class="text-white flex  mt-3 mb-4">
-                        <p class="pr-3">HTML5</p>
-                        <p class="pr-3">CSS</p>
-                        <p class="pr-3">JavaScript</p>
-                    </div>
-                </div>
-                <div class=" rounded-lg bg-bg_profile flex flex-col px-3">
-                    <div class="flex justify-between pt-3">
-                        <a href="https://github.com/Qiese/PythonTutorial" target="_blank">
-                        <img class="hover:opacity-49 hover:cursor-pointer object-cover" src="./assets/image/python_turtorial.png" alt="">
-                        </a>
-                    </div>
-                    <div class="text-white  w-full h-full pt-9">
-                        <p class="font-semibold text-2xl">Python Tutorial</p>
-                        <p class="pt-4">Developer</p>
-                        <p class="border-b-green-500  border-b-2 inline pt">Position: Developer</p>
-                    </div>
-                    <div class="text-white flex  mt-4 mb-4">
-                        <p class="pr-4">Python</p>
-                        <p class="pr-4">Git</p>
+  <!-- ─── NAV ─── -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">bh<span class="dot">.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about" class="nav-link">about</a></li>
+      <li><a href="#portfolio" class="nav-link">work</a></li>
+      <li><a href="#contact" class="nav-link">contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="menu">
+      <span></span><span></span>
+    </button>
+  </nav>
 
-                    </div>
-                </div>
-                <div class=" rounded-lg bg-bg_profile flex flex-col px-4">
-                    <div class="flex justify-between pt-4">
-                        <a href="https://github.com/Qiese/Music-Application" target="_blank">
-                        <img class="hover:opacity-50 hover:cursor-pointer object-cover" src="./assets/image/bamboo_music.png" alt="">
-                        </a>
-                    </div>
-                    <div class="text-white  w-full h-full pt-10">
-                        <p class="font-semibold text-2xl">Music Application</p>
-                        <p class="pt-4">Developer, Designer, Tester</p>
-                        <p class="border-b-green-500  border-b-2 inline pt">Position: Developer</p>
-                    </div>
-                    <div class="text-white flex  mt-4 mb-4">
-                        <p class="pr-4">HTML5</p>
-                        <p class="pr-4">SCSS</p>
-                        <p class="pr-4">JavaScript</p>
-                    </div>
-                </div>
-                <div class=" rounded-lg bg-bg_profile flex flex-col px-4">
-                    <div class="flex justify-between pt-4">
-                        <a href="https://github.com/Qiese/bamboo-store" target="_blank">
-                        <img class="hover:opacity-50 hover:cursor-pointer object-cover" src="./assets/image/bamboo_store.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="text-white  w-full h-full pt-10">
-                        <p class="font-semibold text-2xl">BAMBOO STORE</p>
-                        <p class="pt-4">Developer, Designer, Tester</p>
-                        <p class="border-b-green-500  border-b-2 inline">Position: Developer</p>
-                    </div>
-                    <div class="text-white flex mt-2 mb-4">
-                        <p class="pr-4">HTML5</p>
-                        <p class="pr-4">SCSS</p>
-                        <p class="pr-4">JavaScript</p>
-                    </div>
-                </div>
-              
-                </div>
-            </div>
-    </div>
-    <div class="bg-black" id="contact">
-        <div class="text-center">
-            <h1 class="text-white text-4xl pt-12"> 
-                    Contact me
-            </h1>
-            <div class="text-green-400 mb-6 mt-2">
-                If you've seen my potential or want to talk to me, don't hesitate to send me a message.
-            </div>
-            <div class="flex flex-col md:flex-row justify-center items-center block">
-                <button class="bg-btcolor rounded-xl text-center md:w-60 w-2/4 h-20 m-2 flex flex-col md:flex-row justify-center items-center hover:bg-green-400 hover:cursor-pointer">
-                        <a href="mailto:devbieehoangio@gmail.com" target="blank" class="w-full">
-                            dev.bieehoang.io@gmail.com
-                        </a>
-                </button>
-                <button class="bg-btcolor rounded-xl md:w-60 w-2/4 h-20 m-2  flex flex-col md:flex-row justify-center items-center hover:bg-green-400 hover:cursor-pointer">
-                    (+84) 32 9900 090
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="bg-black">
-        <div class="ml-10 md:ml-24  mr-10 md:mr-24">
-             <div class="badge-base LI-profile-badge " data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="bieehoang" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://vn.linkedin.com/in/bieehoang/en?trk=profile-badge">Quy H.</a></div>
-        </div>
-        <!-- <div class="flex justify-center">
-            <p class="text-white bg-btcolor rounded-3xl text-center items- leading-10 w-44 h-10 mb-16 hover:bg-green-400 hover:cursor-pointer">SEND</p>
-        </div> -->
-        <div class="bg-bg_profile pt-7 flex-col justify-center items-center md:h-30 md:pl-12 md:pr-12">
-            <div class="justify-center flex">
-                <p class="text-white">Powered by
-                    <a href="https://github.com/Qiese" target="blank" class="text-yellow-400 hover:opacity-50">
-                        bieehoang
-                    </a>
-                </p>
-            </div>
-            <div class="flex p-6 md:pt-4 justify-center">
-                <a href="https://linkedin.com/in/bieehoang/" target="_blank"><img class="mr-2 hover:opacity-50 hover:cursor-pointer" src="./assets/image/Rectangle-1.png" alt=""></a>
-                <a href="#"><img class="mr-2 hover:opacity-50 hover:cursor-pointer" src="./assets/image/Rectangle-2.png" alt=""></a>
-                <a href="#"><img class="mr-2 hover:opacity-50 hover:cursor-pointer" src="./assets/image/Rectangle-3.png" alt=""></a>
-                <a href="https://github.com/Qiese/" target="_blank"><img class="mr-2 hover:opacity-50 hover:cursor-pointer" src="./assets/image/Rectangle-4.png" alt=""></a>
-            </div>
-        </div>
-    </div>
+  <!-- ─── MOBILE MENU ─── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#about" class="mobile-link">about</a></li>
+      <li><a href="#portfolio" class="mobile-link">work</a></li>
+      <li><a href="#contact" class="mobile-link">contact</a></li>
+    </ul>
+  </div>
 
-    <script src="./app.js"></script>
- </body>
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="grid-lines"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow reveal">
+        <span class="status-dot"></span>Available for hire
+      </p>
+      <h1 class="hero-name reveal reveal-delay-1">
+        <span class="line">Quy Trung</span>
+        <span class="line accent-line">Hoang<span class="underscore">_</span></span>
+      </h1>
+      <p class="hero-role reveal reveal-delay-2">
+        <span class="typed-text" id="typedText"></span>
+      </p>
+      <p class="hero-desc reveal reveal-delay-3">
+        A developer who loves building clean, functional, and beautiful things for the web.
+      </p>
+      <div class="hero-cta reveal reveal-delay-4">
+        <a href="#portfolio" class="btn btn-primary">
+          <span>View my work</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">01 / about</span>
+        <h2 class="section-title">Who I am</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p class="about-lead">I'm a computer technician & web developer with passion for programming, science, and computer science.</p>
+          <p class="about-body">My objective is simply to be the best developer that I can be and contribute to the technology industry with all that I know and can do. I have experience in developing, designing, testing and debugging web with JavaScript, and I'm working toward becoming a Pythonista.</p>
+          <blockquote class="about-quote">
+            "Always try to make today better than yesterday"
+          </blockquote>
+        </div>
+        <div class="about-side reveal reveal-delay-1">
+          <div class="skills-card">
+            <p class="skills-label">Tech stack</p>
+            <div class="skills-grid">
+              <div class="skill-pill" data-skill="JavaScript">
+                <img src="./assets/image/banner-1.png" alt="JavaScript" />
+                <span>JavaScript</span>
+              </div>
+              <div class="skill-pill" data-skill="Python">
+                <img src="./assets/image/banner-7.png" alt="Python" />
+                <span>Python</span>
+              </div>
+              <div class="skill-pill" data-skill="Django">
+                <img src="./assets/image/djangoproject.png" alt="Django" />
+                <span>Django</span>
+              </div>
+              <div class="skill-pill" data-skill="TypeScript">
+                <img src="./assets/image/typescript.png" alt="TypeScript" />
+                <span>TypeScript</span>
+              </div>
+              <div class="skill-pill" data-skill="Linux">
+                <img src="./assets/image/linux.png" alt="Linux" />
+                <span>Linux</span>
+              </div>
+              <div class="skill-pill" data-skill="Git">
+                <img src="./assets/image/banner-3.png" alt="Git" />
+                <span>Git</span>
+              </div>
+              <div class="skill-pill" data-skill="SCSS">
+                <img src="./assets/image/banner-2.png" alt="SCSS" />
+                <span>SCSS</span>
+              </div>
+              <div class="skill-pill" data-skill="HTML5">
+                <img src="./assets/image/banner-4.png" alt="HTML5" />
+                <span>HTML5</span>
+              </div>
+              <div class="skill-pill" data-skill="Node.js">
+                <img src="./assets/image/banner-5.png" alt="Node.js" />
+                <span>Node.js</span>
+              </div>
+            </div>
+          </div>
+          <div class="stats-row">
+            <div class="stat">
+              <span class="stat-number counter" data-target="6">0</span>
+              <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number counter" data-target="3">0</span>
+              <span class="stat-label">Years exp.</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">∞</span>
+              <span class="stat-label">Curiosity</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PORTFOLIO ─── -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">02 / work</span>
+        <h2 class="section-title">Selected projects</h2>
+      </div>
+      <div class="projects-grid">
+
+        <article class="project-card reveal" data-index="0">
+          <a href="https://github.com/Qiese/django.bamboo_todo" target="_blank" class="project-link">
+            <div class="project-img-wrap">
+              <img src="./assets/image/bamboo_todo.png" alt="Bamboo To-Do" class="project-img" />
+              <div class="project-overlay">
+                <span class="project-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-tag">Django</span>
+                <span class="project-tag">SCSS</span>
+                <span class="project-tag">HTML5</span>
+              </div>
+              <h3 class="project-name">Bamboo To-Do</h3>
+              <p class="project-role">Developer · Designer · Tester</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal reveal-delay-1" data-index="1">
+          <a href="https://github.com/Qiese/bamboo__service" target="_blank" class="project-link">
+            <div class="project-img-wrap">
+              <img src="./assets/image/bamboo_service.png" alt="Bamboo Service" class="project-img" />
+              <div class="project-overlay">
+                <span class="project-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">SCSS</span>
+                <span class="project-tag">HTML5</span>
+              </div>
+              <h3 class="project-name">Bamboo Service</h3>
+              <p class="project-role">Developer · Designer · Tester</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal reveal-delay-2" data-index="2">
+          <a href="https://github.com/Qiese/mycv" target="_blank" class="project-link">
+            <div class="project-img-wrap">
+              <img src="./assets/image/mycv.png" alt="My CV" class="project-img" />
+              <div class="project-overlay">
+                <span class="project-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-tag">HTML5</span>
+                <span class="project-tag">CSS</span>
+                <span class="project-tag">JavaScript</span>
+              </div>
+              <h3 class="project-name">My CV</h3>
+              <p class="project-role">Developer · Designer · Tester</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal" data-index="3">
+          <a href="https://github.com/Qiese/PythonTutorial" target="_blank" class="project-link">
+            <div class="project-img-wrap">
+              <img src="./assets/image/python_turtorial.png" alt="Python Tutorial" class="project-img" />
+              <div class="project-overlay">
+                <span class="project-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">Git</span>
+              </div>
+              <h3 class="project-name">Python Tutorial</h3>
+              <p class="project-role">Developer</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal reveal-delay-1" data-index="4">
+          <a href="https://github.com/Qiese/Music-Application" target="_blank" class="project-link">
+            <div class="project-img-wrap">
+              <img src="./assets/image/bamboo_music.png" alt="Music App" class="project-img" />
+              <div class="project-overlay">
+                <span class="project-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">SCSS</span>
+                <span class="project-tag">HTML5</span>
+              </div>
+              <h3 class="project-name">Music Application</h3>
+              <p class="project-role">Developer · Designer · Tester</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal reveal-delay-2" data-index="5">
+          <a href="https://github.com/Qiese/bamboo-store" target="_blank" class="project-link">
+            <div class="project-img-wrap">
+              <img src="./assets/image/bamboo_store.jpg" alt="Bamboo Store" class="project-img" />
+              <div class="project-overlay">
+                <span class="project-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">SCSS</span>
+                <span class="project-tag">HTML5</span>
+              </div>
+              <h3 class="project-name">Bamboo Store</h3>
+              <p class="project-role">Developer · Designer · Tester</p>
+            </div>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-inner reveal">
+        <span class="section-tag">03 / contact</span>
+        <h2 class="contact-heading">Let's build something<br/><em>together.</em></h2>
+        <p class="contact-sub">Seen my potential? Want to collaborate? Drop a message.</p>
+        <div class="contact-links">
+          <a href="mailto:dev.bieehoang.io@gmail.com" class="contact-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            dev.bieehoang.io@gmail.com
+          </a>
+          <a href="tel:+84329900090" class="contact-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.1 10.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012.03 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            (+84) 32 9900 090
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-copy">Powered by <a href="https://github.com/Qiese" target="_blank">bieehoang</a> — © 2024</p>
+        <div class="footer-socials">
+          <a href="https://linkedin.com/in/bieehoang/" target="_blank" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://github.com/Qiese/" target="_blank" class="social-link" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/app.js"></script>
+</body>
 </html>
