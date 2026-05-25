@@ -57,8 +57,7 @@ up 3 years, maintaining systems at scale
 
 <br/><br/>
 
-<img src="https://github-readme-stats.vercel.app/api?username=bieehoang&show_icons=true&hide_border=true&bg_color=080808&title_color=d4a017&icon_color=d4a017&text_color=e8e8e0" />
-
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=bieehoang&bg_color=080808&color=d4a017&line=d4a017&point=e8e8e0&area=true&area_color=d4a017&hide_border=true" width="100%"/>
 </div>
 
 ---
@@ -80,6 +79,6 @@ up 3 years, maintaining systems at scale
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1c1c1c,50:161616,100:080808&height=120&section=footer&animation=fadeIn" width="100%"/>
 
-<sub><code>[bieehoang] — System online. All services running. © 2024</code></sub>
+<sub><code>[bieehoang] — System online. All services running. © 2019</code></sub>
 
 </div>
