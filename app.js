@@ -224,14 +224,25 @@ setTimeout(runSequence, 800);
 /* ═══════════════════════════════════════════
    COUNTER ANIMATION
 ═══════════════════════════════════════════ */
+// function animCounter(el) {
+//   const target = parseInt(el.dataset.target);
+//   const dur = 1400, step = target / (dur / 16);
+//   let cur = 0;
+//   const t = setInterval(() => {
+//     cur += step;
+//     if (cur >= target) { cur = target; clearInterval(t); }
+//     el.textContent = Math.floor(cur);
+//   }, 16);
+// }
 function animCounter(el) {
   const target = parseInt(el.dataset.target);
+  const suffix = el.dataset.suffix || '';   // ← thêm dòng này
   const dur = 1400, step = target / (dur / 16);
   let cur = 0;
   const t = setInterval(() => {
     cur += step;
     if (cur >= target) { cur = target; clearInterval(t); }
-    el.textContent = Math.floor(cur);
+    el.textContent = Math.floor(cur) + suffix;  // ← thêm suffix
   }, 16);
 }
 const cntObs = new IntersectionObserver(entries => {
