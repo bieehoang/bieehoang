@@ -1,171 +1,297 @@
-/* ─────────────────────────────────────────────
+/* ═══════════════════════════════════════════
    CUSTOM CURSOR
-───────────────────────────────────────────── */
-const dot  = document.getElementById('cursorDot');
-const ring = document.getElementById('cursorRing');
+═══════════════════════════════════════════ */
+const curDot  = document.getElementById('curDot');
+const curRing = document.getElementById('curRing');
 
-if (dot && ring && window.innerWidth > 768) {
-  let mx = 0, my = 0;
-  let rx = 0, ry = 0;
+if (curDot && curRing && window.innerWidth > 768) {
+  let mx = 0, my = 0, rx = 0, ry = 0;
 
   document.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
-    dot.style.left = mx + 'px';
-    dot.style.top  = my + 'px';
+    curDot.style.left = mx + 'px';
+    curDot.style.top  = my + 'px';
   });
 
-  (function animateRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    requestAnimationFrame(animateRing);
+  (function ringLoop() {
+    rx += (mx - rx) * 0.1;
+    ry += (my - ry) * 0.1;
+    curRing.style.left = rx + 'px';
+    curRing.style.top  = ry + 'px';
+    requestAnimationFrame(ringLoop);
   })();
-
-  document.addEventListener('mouseleave', () => {
-    dot.style.opacity = '0'; ring.style.opacity = '0';
-  });
-  document.addEventListener('mouseenter', () => {
-    dot.style.opacity = '1'; ring.style.opacity = '1';
-  });
 }
 
-/* ─────────────────────────────────────────────
-   NAV SCROLL BEHAVIOR
-───────────────────────────────────────────── */
+/* ═══════════════════════════════════════════
+   PARTICLE CANVAS
+═══════════════════════════════════════════ */
+const canvas = document.getElementById('particleCanvas');
+const ctx    = canvas.getContext('2d');
+
+let W, H, particles = [];
+
+function resize() {
+  W = canvas.width  = canvas.offsetWidth;
+  H = canvas.height = canvas.offsetHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x  = Math.random() * W;
+    this.y  = Math.random() * H;
+    this.vx = (Math.random() - 0.5) * 0.3;
+    this.vy = (Math.random() - 0.5) * 0.3 - 0.1;
+    this.life = 0;
+    this.maxLife = 180 + Math.random() * 220;
+    this.size = 0.8 + Math.random() * 1.4;
+    this.gold = Math.random() > 0.6;
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.life++;
+    if (this.life > this.maxLife || this.y < -10) this.reset();
+  }
+  draw() {
+    const prog = this.life / this.maxLife;
+    const alpha = prog < 0.15
+      ? prog / 0.15
+      : prog > 0.75
+        ? (1 - prog) / 0.25
+        : 1;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = this.gold
+      ? `rgba(212,160,23,${alpha * 0.55})`
+      : `rgba(200,190,160,${alpha * 0.2})`;
+    ctx.fill();
+  }
+}
+
+for (let i = 0; i < 120; i++) {
+  const p = new Particle();
+  p.life = Math.random() * p.maxLife; // pre-seed
+  particles.push(p);
+}
+
+// Connection lines between nearby gold particles
+function drawConnections() {
+  const gp = particles.filter(p => p.gold);
+  for (let i = 0; i < gp.length; i++) {
+    for (let j = i + 1; j < gp.length; j++) {
+      const dx = gp[i].x - gp[j].x;
+      const dy = gp[i].y - gp[j].y;
+      const d  = Math.sqrt(dx*dx + dy*dy);
+      if (d < 120) {
+        ctx.beginPath();
+        ctx.moveTo(gp[i].x, gp[i].y);
+        ctx.lineTo(gp[j].x, gp[j].y);
+        ctx.strokeStyle = `rgba(212,160,23,${(1 - d/120) * 0.08})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, W, H);
+  drawConnections();
+  particles.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+/* ═══════════════════════════════════════════
+   NAV SCROLL
+═══════════════════════════════════════════ */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
 
-/* ─────────────────────────────────────────────
-   HAMBURGER MENU
-───────────────────────────────────────────── */
-const hamburger   = document.getElementById('hamburger');
-const mobileMenu  = document.getElementById('mobileMenu');
+/* ═══════════════════════════════════════════
+   HAMBURGER
+═══════════════════════════════════════════ */
+const hamburger  = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
 
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('open');
   mobileMenu.classList.toggle('open');
   document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
 });
+document.querySelectorAll('.ml').forEach(l => l.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
 
-document.querySelectorAll('.mobile-link').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-    document.body.style.overflow = '';
-  });
-});
-
-/* ─────────────────────────────────────────────
+/* ═══════════════════════════════════════════
    SCROLL REVEAL
-───────────────────────────────────────────── */
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
+═══════════════════════════════════════════ */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+/* ═══════════════════════════════════════════
+   TERMINAL TYPER
+═══════════════════════════════════════════ */
+const termCmd    = document.getElementById('termCmd');
+const termOutput = document.getElementById('termOutput');
 
-/* ─────────────────────────────────────────────
-   TYPED TEXT
-───────────────────────────────────────────── */
-const phrases = [
-  'Web Developer',
-  'Frontend Engineer',
-  'Python Enthusiast',
-  'UI/UX Tinkerer',
-  'Problem Solver',
+const sequence = [
+  {
+    cmd: 'whoami',
+    out: [
+      { cls: 'to-gold',  txt: 'bieehoang' },
+    ]
+  },
+  {
+    cmd: 'cat /etc/role',
+    out: [
+      { cls: 'to-green', txt: '→ DevOps Engineer' },
+      { cls: 'to-line',  txt: '→ Linux · Docker · Nginx · Shell' },
+    ]
+  },
+  {
+    cmd: 'uptime --pretty',
+    out: [
+      { cls: 'to-line',  txt: 'up 3 years, maintaining systems' },
+    ]
+  },
+  {
+    cmd: 'docker ps --format "{{.Names}}"',
+    out: [
+      { cls: 'to-green', txt: 'nginx-proxy' },
+      { cls: 'to-green', txt: 'app-container' },
+      { cls: 'to-green', txt: 'monitor-stack' },
+    ]
+  },
 ];
 
-const typedEl = document.getElementById('typedText');
-let phraseIdx = 0, charIdx = 0, deleting = false;
+let seqIdx = 0;
 
-function typeLoop() {
-  const current = phrases[phraseIdx];
-  if (deleting) {
-    typedEl.textContent = current.slice(0, --charIdx);
-    if (charIdx === 0) {
-      deleting = false;
-      phraseIdx = (phraseIdx + 1) % phrases.length;
-      setTimeout(typeLoop, 400);
-      return;
-    }
-    setTimeout(typeLoop, 55);
-  } else {
-    typedEl.textContent = current.slice(0, ++charIdx);
-    if (charIdx === current.length) {
-      deleting = true;
-      setTimeout(typeLoop, 1800);
-      return;
-    }
-    setTimeout(typeLoop, 90);
-  }
+function typeCmd(str, cb) {
+  let i = 0;
+  termCmd.textContent = '';
+  const t = setInterval(() => {
+    termCmd.textContent += str[i++];
+    if (i >= str.length) { clearInterval(t); setTimeout(cb, 350); }
+  }, 65);
 }
-setTimeout(typeLoop, 900);
 
-/* ─────────────────────────────────────────────
+function showOutput(lines, cb) {
+  termOutput.innerHTML = '';
+  lines.forEach((l, i) => {
+    setTimeout(() => {
+      const d = document.createElement('div');
+      d.className = l.cls;
+      d.textContent = l.txt;
+      termOutput.appendChild(d);
+      if (i === lines.length - 1) setTimeout(cb, 1400);
+    }, i * 180);
+  });
+}
+
+function deleteCmd(cb) {
+  const t = setInterval(() => {
+    if (termCmd.textContent.length === 0) { clearInterval(t); cb(); }
+    else termCmd.textContent = termCmd.textContent.slice(0, -1);
+  }, 35);
+}
+
+function runSequence() {
+  const step = sequence[seqIdx % sequence.length];
+  typeCmd(step.cmd, () => {
+    showOutput(step.out, () => {
+      deleteCmd(() => {
+        termOutput.innerHTML = '';
+        seqIdx++;
+        setTimeout(runSequence, 300);
+      });
+    });
+  });
+}
+setTimeout(runSequence, 800);
+
+/* ═══════════════════════════════════════════
    COUNTER ANIMATION
-───────────────────────────────────────────── */
-function animateCounter(el) {
-  const target = parseInt(el.dataset.target, 10);
-  const duration = 1200;
-  const step = target / (duration / 16);
-  let current = 0;
-  const timer = setInterval(() => {
-    current += step;
-    if (current >= target) { current = target; clearInterval(timer); }
-    el.textContent = Math.floor(current);
+═══════════════════════════════════════════ */
+function animCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const dur = 1400, step = target / (dur / 16);
+  let cur = 0;
+  const t = setInterval(() => {
+    cur += step;
+    if (cur >= target) { cur = target; clearInterval(t); }
+    el.textContent = Math.floor(cur);
   }, 16);
 }
-
-const counterObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateCounter(entry.target);
-      counterObserver.unobserve(entry.target);
-    }
-  });
+const cntObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { animCounter(e.target); cntObs.unobserve(e.target); } });
 }, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(el => cntObs.observe(el));
 
-document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
-
-/* ─────────────────────────────────────────────
-   MAGNETIC BUTTONS (subtle tilt on hover)
-───────────────────────────────────────────── */
-document.querySelectorAll('.btn, .contact-btn, .project-card').forEach(el => {
+/* ═══════════════════════════════════════════
+   MAGNETIC TILT on cards
+═══════════════════════════════════════════ */
+document.querySelectorAll('.proj-card, .stack-card, .contact-card').forEach(el => {
   el.addEventListener('mousemove', e => {
-    const rect = el.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width  / 2) / (rect.width  / 2);
-    const y = (e.clientY - rect.top  - rect.height / 2) / (rect.height / 2);
-    el.style.setProperty('--tilt-x', `${y * 4}deg`);
-    el.style.setProperty('--tilt-y', `${-x * 4}deg`);
-    el.style.transform = `perspective(600px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(-4px)`;
+    const r = el.getBoundingClientRect();
+    const x = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
+    const y = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+    el.style.transform = `perspective(800px) rotateX(${y * -3}deg) rotateY(${x * 3}deg) translateY(-5px)`;
   });
-  el.addEventListener('mouseleave', () => {
-    el.style.transform = '';
-  });
+  el.addEventListener('mouseleave', () => { el.style.transform = ''; });
 });
 
-/* ─────────────────────────────────────────────
-   SMOOTH ACTIVE NAV HIGHLIGHT
-───────────────────────────────────────────── */
-const sections = document.querySelectorAll('section[id]');
+/* ═══════════════════════════════════════════
+   ACTIVE NAV
+═══════════════════════════════════════════ */
 const navLinks = document.querySelectorAll('.nav-link');
-
-const sectionObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(link => link.style.color = '');
-      const activeLink = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
-      if (activeLink) activeLink.style.color = '#63eba4';
+const sections = document.querySelectorAll('section[id]');
+const secObs   = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.style.color = '');
+      const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+      if (a) a.style.color = '#d4a017';
     }
   });
-}, { threshold: 0.5 });
+}, { threshold: 0.45 });
+sections.forEach(s => secObs.observe(s));
 
-sections.forEach(s => sectionObserver.observe(s));
+/* ═══════════════════════════════════════════
+   GOLD RIPPLE on click
+═══════════════════════════════════════════ */
+document.addEventListener('click', e => {
+  const ripple = document.createElement('div');
+  Object.assign(ripple.style, {
+    position: 'fixed',
+    left: e.clientX - 15 + 'px',
+    top:  e.clientY - 15 + 'px',
+    width: '30px', height: '30px',
+    border: '1.5px solid rgba(212,160,23,0.6)',
+    borderRadius: '50%',
+    pointerEvents: 'none',
+    zIndex: '9990',
+    animation: 'rippleOut .6s ease-out forwards',
+  });
+  document.body.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 600);
+});
+
+// inject ripple keyframes
+const style = document.createElement('style');
+style.textContent = `@keyframes rippleOut {
+  0%   { transform: scale(1); opacity: 1; }
+  100% { transform: scale(3.5); opacity: 0; }
+}`;
+document.head.appendChild(style);

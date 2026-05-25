@@ -1,147 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>bieehoang — Developer & Designer</title>
-  <link rel="icon" href="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./assets/css/style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>bieehoang — DevOps Engineer</title>
+  <link rel="icon" href="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Cinzel:wght@400;600;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="./assets/css/style.css"/>
 </head>
 <body>
 
-  <!-- ─── CURSOR ─── -->
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+  <!-- NOISE OVERLAY -->
+  <div class="noise"></div>
 
-  <!-- ─── NAV ─── -->
+  <!-- CURSOR -->
+  <div class="cur-dot" id="curDot"></div>
+  <div class="cur-ring" id="curRing"></div>
+
+  <!-- SCANLINES -->
+  <div class="scanlines"></div>
+
+  <!-- ── NAV ── -->
   <nav class="nav" id="nav">
-    <a href="#" class="nav-logo">bh<span class="dot">.</span></a>
+    <a href="#" class="nav-logo">
+      <span class="logo-bracket">[</span>bh<span class="logo-bracket">]</span>
+    </a>
     <ul class="nav-links">
-      <li><a href="#about" class="nav-link">about</a></li>
-      <li><a href="#portfolio" class="nav-link">work</a></li>
-      <li><a href="#contact" class="nav-link">contact</a></li>
+      <li><a href="#about"     class="nav-link"><span class="nl-idx">01.</span>about</a></li>
+      <li><a href="#stack"     class="nav-link"><span class="nl-idx">02.</span>stack</a></li>
+      <li><a href="#portfolio" class="nav-link"><span class="nl-idx">03.</span>work</a></li>
+      <li><a href="#contact"   class="nav-link"><span class="nl-idx">04.</span>contact</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" aria-label="menu">
+    <button class="hamburger" id="hamburger">
       <span></span><span></span>
     </button>
   </nav>
 
-  <!-- ─── MOBILE MENU ─── -->
   <div class="mobile-menu" id="mobileMenu">
     <ul>
-      <li><a href="#about" class="mobile-link">about</a></li>
-      <li><a href="#portfolio" class="mobile-link">work</a></li>
-      <li><a href="#contact" class="mobile-link">contact</a></li>
+      <li><a href="#about"     class="ml">about</a></li>
+      <li><a href="#stack"     class="ml">stack</a></li>
+      <li><a href="#portfolio" class="ml">work</a></li>
+      <li><a href="#contact"   class="ml">contact</a></li>
     </ul>
   </div>
 
-  <!-- ─── HERO ─── -->
+  <!-- ── HERO ── -->
   <section class="hero" id="home">
-    <div class="hero-bg">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="grid-lines"></div>
-    </div>
+    <canvas id="particleCanvas"></canvas>
+
+    <div class="hero-glow"></div>
+
     <div class="hero-content">
-      <p class="hero-eyebrow reveal">
-        <span class="status-dot"></span>Available for hire
-      </p>
-      <h1 class="hero-name reveal reveal-delay-1">
-        <span class="line">Quy Trung</span>
-        <span class="line accent-line">Hoang<span class="underscore">_</span></span>
+      <!-- Terminal window -->
+      <div class="terminal reveal">
+        <div class="term-bar">
+          <span class="term-btn tb-red"></span>
+          <span class="term-btn tb-yellow"></span>
+          <span class="term-btn tb-green"></span>
+          <span class="term-title">bieehoang@devops ~ zsh</span>
+        </div>
+        <div class="term-body">
+          <div class="term-line">
+            <span class="term-prompt">❯</span>
+            <span class="term-cmd" id="termCmd"></span>
+            <span class="term-cursor">█</span>
+          </div>
+          <div class="term-output" id="termOutput"></div>
+        </div>
+      </div>
+
+      <h1 class="hero-name reveal reveal-d1">
+        <span class="hn-sub">DevOps Engineer</span>
+        <span class="hn-main">Quy Trung<br/><em>Hoang</em></span>
       </h1>
-      <p class="hero-role reveal reveal-delay-2">
-        <span class="typed-text" id="typedText"></span>
+
+      <p class="hero-desc reveal reveal-d2">
+        Maintaining systems at scale. Automating everything that can be automated.
+        Building infrastructure that doesn't wake you up at 3 AM.
       </p>
-      <p class="hero-desc reveal reveal-delay-3">
-        A developer who loves building clean, functional, and beautiful things for the web.
-      </p>
-      <div class="hero-cta reveal reveal-delay-4">
-        <a href="#portfolio" class="btn btn-primary">
+
+      <div class="hero-badges reveal reveal-d3">
+        <span class="hbadge"><span class="hb-dot"></span>Linux</span>
+        <span class="hbadge"><span class="hb-dot"></span>Docker</span>
+        <span class="hbadge"><span class="hb-dot"></span>Nginx</span>
+        <span class="hbadge"><span class="hb-dot"></span>Shell</span>
+        <span class="hbadge"><span class="hb-dot"></span>CI/CD</span>
+      </div>
+
+      <div class="hero-cta reveal reveal-d4">
+        <a href="#portfolio" class="btn-gold">
           <span>View my work</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        <a href="#contact" class="btn-ghost">Get in touch</a>
       </div>
     </div>
+
     <div class="hero-scroll">
+      <div class="hs-line"></div>
       <span>scroll</span>
-      <div class="scroll-line"></div>
     </div>
   </section>
 
-  <!-- ─── ABOUT ─── -->
+  <!-- ── ABOUT ── -->
   <section class="about" id="about">
     <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">01 / about</span>
-        <h2 class="section-title">Who I am</h2>
-      </div>
+      <div class="sec-label reveal"><span>//</span> 01 — about</div>
       <div class="about-grid">
-        <div class="about-text reveal">
-          <p class="about-lead">I'm a computer technician & web developer with passion for programming, science, and computer science.</p>
-          <p class="about-body">My objective is simply to be the best developer that I can be and contribute to the technology industry with all that I know and can do. I have experience in developing, designing, testing and debugging web with JavaScript, and I'm working toward becoming a Pythonista.</p>
+        <div class="about-left reveal">
+          <h2 class="sec-title">Who<br/>am I<span class="gold">_</span></h2>
+          <p class="about-lead">A developer turned DevOps engineer. I live in the terminal, speak fluent bash, and believe every problem has an elegant automated solution.</p>
+          <p class="about-body">With a background in web development and a deep love for Linux systems, I've transitioned into maintaining, scaling, and hardening infrastructure. I containerize everything, automate the boring stuff, and obsess over system reliability.</p>
           <blockquote class="about-quote">
+            <span class="aq-icon">▎</span>
             "Always try to make today better than yesterday"
           </blockquote>
         </div>
-        <div class="about-side reveal reveal-delay-1">
-          <div class="skills-card">
-            <p class="skills-label">Tech stack</p>
-            <div class="skills-grid">
-              <div class="skill-pill" data-skill="JavaScript">
-                <img src="./assets/image/banner-1.png" alt="JavaScript" />
-                <span>JavaScript</span>
-              </div>
-              <div class="skill-pill" data-skill="Python">
-                <img src="./assets/image/banner-7.png" alt="Python" />
-                <span>Python</span>
-              </div>
-              <div class="skill-pill" data-skill="Django">
-                <img src="./assets/image/djangoproject.png" alt="Django" />
-                <span>Django</span>
-              </div>
-              <div class="skill-pill" data-skill="TypeScript">
-                <img src="./assets/image/typescript.png" alt="TypeScript" />
-                <span>TypeScript</span>
-              </div>
-              <div class="skill-pill" data-skill="Linux">
-                <img src="./assets/image/linux.png" alt="Linux" />
-                <span>Linux</span>
-              </div>
-              <div class="skill-pill" data-skill="Git">
-                <img src="./assets/image/banner-3.png" alt="Git" />
-                <span>Git</span>
-              </div>
-              <div class="skill-pill" data-skill="SCSS">
-                <img src="./assets/image/banner-2.png" alt="SCSS" />
-                <span>SCSS</span>
-              </div>
-              <div class="skill-pill" data-skill="HTML5">
-                <img src="./assets/image/banner-4.png" alt="HTML5" />
-                <span>HTML5</span>
-              </div>
-              <div class="skill-pill" data-skill="Node.js">
-                <img src="./assets/image/banner-5.png" alt="Node.js" />
-                <span>Node.js</span>
-              </div>
+        <div class="about-right reveal reveal-d1">
+          <div class="sys-card">
+            <div class="sc-header">
+              <span class="sc-prompt">root@bieehoang</span>
+              <span class="sc-path">:~ $</span>
+              <span class="sc-cmd"> neofetch</span>
+            </div>
+            <div class="sc-body">
+              <div class="sc-row"><span class="sc-key">OS</span><span class="sc-val">Ubuntu 22.04 LTS x86_64</span></div>
+              <div class="sc-row"><span class="sc-key">Role</span><span class="sc-val">DevOps Engineer</span></div>
+              <div class="sc-row"><span class="sc-key">Shell</span><span class="sc-val">zsh 5.9 + oh-my-zsh</span></div>
+              <div class="sc-row"><span class="sc-key">Editor</span><span class="sc-val">Vim / VS Code</span></div>
+              <div class="sc-row"><span class="sc-key">Focus</span><span class="sc-val">Linux · Docker · Nginx · Shell</span></div>
+              <div class="sc-row"><span class="sc-key">Stack</span><span class="sc-val">JS · Python · Django</span></div>
+              <div class="sc-row"><span class="sc-key">Status</span><span class="sc-val sc-red">● Not Open To Work</span></div>
             </div>
           </div>
           <div class="stats-row">
-            <div class="stat">
-              <span class="stat-number counter" data-target="6">0</span>
-              <span class="stat-label">Projects</span>
+            <div class="stat-box">
+              <span class="stat-n counter" data-target="3">0</span>
+              <span class="stat-l">Yrs DevOps</span>
             </div>
-            <div class="stat">
-              <span class="stat-number counter" data-target="3">0</span>
-              <span class="stat-label">Years exp.</span>
+            <div class="stat-box">
+              <span class="stat-n counter" data-target="12">0</span>
+              <span class="stat-l">Projects</span>
             </div>
-            <div class="stat">
-              <span class="stat-number">∞</span>
-              <span class="stat-label">Curiosity</span>
+            <div class="stat-box">
+              <span class="stat-n">99<span class="stat-pct">%</span></span>
+              <span class="stat-l">Uptime goal</span>
             </div>
           </div>
         </div>
@@ -149,176 +155,246 @@
     </div>
   </section>
 
-  <!-- ─── PORTFOLIO ─── -->
+  <!-- ── STACK ── -->
+  <section class="stack" id="stack">
+    <div class="container">
+      <div class="sec-label reveal"><span>//</span> 02 — stack</div>
+      <h2 class="sec-title reveal">Arsenal<span class="gold">_</span></h2>
+      <div class="stack-grid">
+
+        <div class="stack-card reveal" data-cat="core">
+          <div class="scard-icon">⚙</div>
+          <h3 class="scard-title">Systems</h3>
+          <ul class="scard-list">
+            <li><span class="sl-dot">▸</span>Linux (Ubuntu / CentOS / Arch)</li>
+            <li><span class="sl-dot">▸</span>Bash / Zsh scripting</li>
+            <li><span class="sl-dot">▸</span>Cron · Systemd · Journalctl</li>
+            <li><span class="sl-dot">▸</span>File system & permissions mgmt</li>
+          </ul>
+        </div>
+
+        <div class="stack-card reveal reveal-d1" data-cat="infra">
+          <div class="scard-icon">🐳</div>
+          <h3 class="scard-title">Containers</h3>
+          <ul class="scard-list">
+            <li><span class="sl-dot">▸</span>Docker · Docker Compose</li>
+            <li><span class="sl-dot">▸</span>Image optimization & layering</li>
+            <li><span class="sl-dot">▸</span>Container networking & volumes</li>
+            <li><span class="sl-dot">▸</span>Registry management</li>
+          </ul>
+        </div>
+
+        <div class="stack-card reveal reveal-d2" data-cat="web">
+          <div class="scard-icon">⚡</div>
+          <h3 class="scard-title">Web & Proxy</h3>
+          <ul class="scard-list">
+            <li><span class="sl-dot">▸</span>Nginx (reverse proxy / LB)</li>
+            <li><span class="sl-dot">▸</span>SSL/TLS · Let's Encrypt</li>
+            <li><span class="sl-dot">▸</span>Rate limiting & caching</li>
+            <li><span class="sl-dot">▸</span>Vhost & upstream config</li>
+          </ul>
+        </div>
+
+        <div class="stack-card reveal reveal-d3" data-cat="dev">
+          <div class="scard-icon">🔧</div>
+          <h3 class="scard-title">Dev & Automation</h3>
+          <ul class="scard-list">
+            <li><span class="sl-dot">▸</span>Git · GitHub Actions</li>
+            <li><span class="sl-dot">▸</span>Python · Django</li>
+            <li><span class="sl-dot">▸</span>JavaScript / TypeScript</li>
+            <li><span class="sl-dot">▸</span>CI/CD pipelines</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PORTFOLIO ── -->
   <section class="portfolio" id="portfolio">
     <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">02 / work</span>
-        <h2 class="section-title">Selected projects</h2>
-      </div>
+      <div class="sec-label reveal"><span>//</span> 03 — work</div>
+      <h2 class="sec-title reveal">Selected<br/>Projects<span class="gold">_</span></h2>
       <div class="projects-grid">
 
-        <article class="project-card reveal" data-index="0">
-          <a href="https://github.com/Qiese/django.bamboo_todo" target="_blank" class="project-link">
-            <div class="project-img-wrap">
-              <img src="./assets/image/bamboo_todo.png" alt="Bamboo To-Do" class="project-img" />
-              <div class="project-overlay">
-                <span class="project-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
-              </div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span class="project-tag">Django</span>
-                <span class="project-tag">SCSS</span>
-                <span class="project-tag">HTML5</span>
-              </div>
-              <h3 class="project-name">Bamboo To-Do</h3>
-              <p class="project-role">Developer · Designer · Tester</p>
-            </div>
+        <!-- DevOps projects (featured) -->
+        <article class="proj-card proj-featured reveal">
+          <div class="pc-top">
+            <span class="pc-tag tag-devops">DevOps</span>
+            <span class="pc-num">01</span>
+          </div>
+          <h3 class="pc-name">System Maintenance Scripts</h3>
+          <p class="pc-desc">Collection of production-grade bash scripts for automated system maintenance — log rotation, health checks, disk monitoring and alerting.</p>
+          <div class="pc-stack">
+            <span>Bash</span><span>Linux</span><span>Cron</span>
+          </div>
+          <a href="https://github.com/Qiese" target="_blank" class="pc-link">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
+          <div class="pc-glow"></div>
         </article>
 
-        <article class="project-card reveal reveal-delay-1" data-index="1">
-          <a href="https://github.com/Qiese/bamboo__service" target="_blank" class="project-link">
-            <div class="project-img-wrap">
-              <img src="./assets/image/bamboo_service.png" alt="Bamboo Service" class="project-img" />
-              <div class="project-overlay">
-                <span class="project-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
-              </div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span class="project-tag">JavaScript</span>
-                <span class="project-tag">SCSS</span>
-                <span class="project-tag">HTML5</span>
-              </div>
-              <h3 class="project-name">Bamboo Service</h3>
-              <p class="project-role">Developer · Designer · Tester</p>
-            </div>
+        <article class="proj-card proj-featured reveal reveal-d1">
+          <div class="pc-top">
+            <span class="pc-tag tag-devops">DevOps</span>
+            <span class="pc-num">02</span>
+          </div>
+          <h3 class="pc-name">Docker Compose Infra Stack</h3>
+          <p class="pc-desc">Multi-service containerized environment with Nginx reverse proxy, SSL termination, and automated container health management.</p>
+          <div class="pc-stack">
+            <span>Docker</span><span>Nginx</span><span>Shell</span>
+          </div>
+          <a href="https://github.com/Qiese" target="_blank" class="pc-link">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
+          <div class="pc-glow"></div>
         </article>
 
-        <article class="project-card reveal reveal-delay-2" data-index="2">
-          <a href="https://github.com/Qiese/mycv" target="_blank" class="project-link">
-            <div class="project-img-wrap">
-              <img src="./assets/image/mycv.png" alt="My CV" class="project-img" />
-              <div class="project-overlay">
-                <span class="project-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
-              </div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span class="project-tag">HTML5</span>
-                <span class="project-tag">CSS</span>
-                <span class="project-tag">JavaScript</span>
-              </div>
-              <h3 class="project-name">My CV</h3>
-              <p class="project-role">Developer · Designer · Tester</p>
-            </div>
+        <!-- Web projects -->
+        <article class="proj-card reveal">
+          <div class="pc-top">
+            <span class="pc-tag tag-web">Web</span>
+            <span class="pc-num">03</span>
+          </div>
+          <h3 class="pc-name">Bamboo To-Do</h3>
+          <p class="pc-desc">Full-stack task management app built with Django backend and custom SCSS frontend.</p>
+          <div class="pc-stack">
+            <span>Django</span><span>SCSS</span><span>HTML5</span>
+          </div>
+          <a href="https://github.com/Qiese/django.bamboo_todo" target="_blank" class="pc-link">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
+          <div class="pc-glow"></div>
         </article>
 
-        <article class="project-card reveal" data-index="3">
-          <a href="https://github.com/Qiese/PythonTutorial" target="_blank" class="project-link">
-            <div class="project-img-wrap">
-              <img src="./assets/image/python_turtorial.png" alt="Python Tutorial" class="project-img" />
-              <div class="project-overlay">
-                <span class="project-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
-              </div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span class="project-tag">Python</span>
-                <span class="project-tag">Git</span>
-              </div>
-              <h3 class="project-name">Python Tutorial</h3>
-              <p class="project-role">Developer</p>
-            </div>
+        <article class="proj-card reveal reveal-d1">
+          <div class="pc-top">
+            <span class="pc-tag tag-web">Web</span>
+            <span class="pc-num">04</span>
+          </div>
+          <h3 class="pc-name">Bamboo Service</h3>
+          <p class="pc-desc">Service-oriented web platform with vanilla JS, custom animations and modular SCSS architecture.</p>
+          <div class="pc-stack">
+            <span>JavaScript</span><span>SCSS</span><span>HTML5</span>
+          </div>
+          <a href="https://github.com/Qiese/bamboo__service" target="_blank" class="pc-link">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
+          <div class="pc-glow"></div>
         </article>
 
-        <article class="project-card reveal reveal-delay-1" data-index="4">
-          <a href="https://github.com/Qiese/Music-Application" target="_blank" class="project-link">
-            <div class="project-img-wrap">
-              <img src="./assets/image/bamboo_music.png" alt="Music App" class="project-img" />
-              <div class="project-overlay">
-                <span class="project-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
-              </div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span class="project-tag">JavaScript</span>
-                <span class="project-tag">SCSS</span>
-                <span class="project-tag">HTML5</span>
-              </div>
-              <h3 class="project-name">Music Application</h3>
-              <p class="project-role">Developer · Designer · Tester</p>
-            </div>
+        <article class="proj-card reveal reveal-d2">
+          <div class="pc-top">
+            <span class="pc-tag tag-web">Web</span>
+            <span class="pc-num">05</span>
+          </div>
+          <h3 class="pc-name">Music Application</h3>
+          <p class="pc-desc">Browser-based music player with custom UI controls, playlist management and SCSS-driven animations.</p>
+          <div class="pc-stack">
+            <span>JavaScript</span><span>SCSS</span><span>HTML5</span>
+          </div>
+          <a href="https://github.com/Qiese/Music-Application" target="_blank" class="pc-link">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
+          <div class="pc-glow"></div>
         </article>
 
-        <article class="project-card reveal reveal-delay-2" data-index="5">
-          <a href="https://github.com/Qiese/bamboo-store" target="_blank" class="project-link">
-            <div class="project-img-wrap">
-              <img src="./assets/image/bamboo_store.jpg" alt="Bamboo Store" class="project-img" />
-              <div class="project-overlay">
-                <span class="project-cta">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
-              </div>
-            </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span class="project-tag">JavaScript</span>
-                <span class="project-tag">SCSS</span>
-                <span class="project-tag">HTML5</span>
-              </div>
-              <h3 class="project-name">Bamboo Store</h3>
-              <p class="project-role">Developer · Designer · Tester</p>
-            </div>
+        <article class="proj-card reveal reveal-d3">
+          <div class="pc-top">
+            <span class="pc-tag tag-py">Python</span>
+            <span class="pc-num">06</span>
+          </div>
+          <h3 class="pc-name">Python Tutorial</h3>
+          <p class="pc-desc">Structured Python learning repository covering fundamentals to intermediate scripting patterns.</p>
+          <div class="pc-stack">
+            <span>Python</span><span>Git</span>
+          </div>
+          <a href="https://github.com/Qiese/PythonTutorial" target="_blank" class="pc-link">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
+          <div class="pc-glow"></div>
         </article>
 
       </div>
     </div>
   </section>
 
-  <!-- ─── CONTACT ─── -->
+  <!-- ── CONTACT ── -->
   <section class="contact" id="contact">
     <div class="container">
       <div class="contact-inner reveal">
-        <span class="section-tag">03 / contact</span>
-        <h2 class="contact-heading">Let's build something<br/><em>together.</em></h2>
-        <p class="contact-sub">Seen my potential? Want to collaborate? Drop a message.</p>
-        <div class="contact-links">
-          <a href="mailto:dev.bieehoang.io@gmail.com" class="contact-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
-            dev.bieehoang.io@gmail.com
+        <div class="sec-label"><span>//</span> 04 — contact</div>
+        <h2 class="contact-title">Let's<br/><em>Connect<span class="gold">_</span></em></h2>
+        <p class="contact-sub">Open to new opportunities, collaborations, or just a good tech conversation.</p>
+
+        <div class="contact-cards">
+          <a href="mailto:dev.bieehoang.io@gmail.com" class="contact-card">
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            </div>
+            <div class="cc-info">
+              <span class="cc-label">Email</span>
+              <span class="cc-val">dev.bieehoang.io@gmail.com</span>
+            </div>
+            <svg class="cc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
-          <a href="tel:+84329900090" class="contact-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.1 10.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012.03 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            (+84) 32 9900 090
+
+          <a href="tel:+84329900090" class="contact-card">
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.1 10.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012.03 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="cc-info">
+              <span class="cc-label">Phone</span>
+              <span class="cc-val">(+84) 32 9900 090</span>
+            </div>
+            <svg class="cc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+
+          <a href="https://linkedin.com/in/bieehoang/" target="_blank" class="contact-card">
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <div class="cc-info">
+              <span class="cc-label">LinkedIn</span>
+              <span class="cc-val">linkedin.com/in/bieehoang</span>
+            </div>
+            <svg class="cc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+
+          <a href="https://github.com/Qiese" target="_blank" class="contact-card">
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            </div>
+            <div class="cc-info">
+              <span class="cc-label">GitHub</span>
+              <span class="cc-val">github.com/bieehoang</span>
+            </div>
+            <svg class="cc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── FOOTER ─── -->
+  <!-- ── FOOTER ── -->
   <footer class="footer">
     <div class="container">
       <div class="footer-inner">
-        <p class="footer-copy">Powered by <a href="https://github.com/Qiese" target="_blank">bieehoang</a> — © 2024</p>
-        <div class="footer-socials">
-          <a href="https://linkedin.com/in/bieehoang/" target="_blank" class="social-link" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <a href="https://github.com/Qiese/" target="_blank" class="social-link" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-          </a>
-        </div>
+        <p class="footer-copy">
+          <span class="fc-bracket">[</span>bieehoang<span class="fc-bracket">]</span>
+          — Built with passion & caffeine © 2024
+        </p>
+        <p class="footer-mono">System online. All services running.</p>
       </div>
     </div>
   </footer>
 
-  <script src="./assets/js/app.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
