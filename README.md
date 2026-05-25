@@ -83,11 +83,3 @@ up 4+ years, maintaining systems at scale
 
 </div>
 
-<!-- WEATHER_START -->
-**🌤️ Weather Update** — *22:41 25/05/2026 ICT*
-
-☀️ **Ho Chi Minh** — 30.0°C | Rain: 47% → 43% | `22:41`
-☁️ **Florida** — 30.8°C | Rain: 0% → 0% | `11:41`
-☁️ **Singapore** — 26.9°C | Rain: 0% → 0% | `23:41`
-☁️ **Hanoi** — 33.0°C | Rain: 0% → 0% | `22:41`
-<!-- WEATHER_END -->
