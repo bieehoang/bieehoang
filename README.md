@@ -40,12 +40,12 @@ up 4+ years, maintaining systems at scale
 
 | # | Project | Stack | Type |
 |---|---------|-------|------|
-| 01 | [System Maintenance Scripts](https://github.com/canonical) | Bash · Linux · Cron | DevOps |
-| 02 | [Docker Compose Infra Stack](https://github.com/docker/compose) | Docker · Nginx · Shell | DevOps |
-| 03 | [Bamboo To-Do](https://github.com/Qiese/django.bamboo_todo) | Django · SCSS · HTML5 | Web |
-| 04 | [Bamboo Service](https://github.com/Qiese/bamboo__service) | JavaScript · SCSS · HTML5 | Web |
-| 05 | [Music Application](https://github.com/Qiese/Music-Application) | JavaScript · SCSS · HTML5 | Web |
-| 06 | [Python Tutorial](https://github.com/Qiese/PythonTutorial) | Python · Git | Python |
+| 01 | [System Maintenance Scripts](https://github.com/canonical) | Bash · Linux · Cron | Supporter |
+| 02 | [Docker Compose Infra Stack](https://github.com/docker/compose) | Docker · Nginx · Shell | Supporter |
+| 03 | [Bamboo Store](https://github.com/bieehoang/django.bamboo_store) | Django · SCSS · HTML5 | Developer |
+| 04 | [LessionNChallengess](https://github.com/bieehoang/LessionNChallenges) | JavaScript · Nodejs | Volunteer |
+| 05 | [YOLOP](https://github.com/bieehoang/yolov5) | Python · Git | Volunteer |
+| 06 | [Python Tutorial](https://github.com/bieehoang/PythonTutorial) | Python · Git | Volunteer |
 
 ---
 
