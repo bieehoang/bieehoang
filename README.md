@@ -40,8 +40,8 @@ up 3 years, maintaining systems at scale
 
 | # | Project | Stack | Type |
 |---|---------|-------|------|
-| 01 | [System Maintenance Scripts](https://github.com/Qiese) | Bash · Linux · Cron | DevOps |
-| 02 | [Docker Compose Infra Stack](https://github.com/Qiese) | Docker · Nginx · Shell | DevOps |
+| 01 | [System Maintenance Scripts](https://github.com/canonical) | Bash · Linux · Cron | DevOps |
+| 02 | [Docker Compose Infra Stack](https://github.com/docker/compose) | Docker · Nginx · Shell | DevOps |
 | 03 | [Bamboo To-Do](https://github.com/Qiese/django.bamboo_todo) | Django · SCSS · HTML5 | Web |
 | 04 | [Bamboo Service](https://github.com/Qiese/bamboo__service) | JavaScript · SCSS · HTML5 | Web |
 | 05 | [Music Application](https://github.com/Qiese/Music-Application) | JavaScript · SCSS · HTML5 | Web |
