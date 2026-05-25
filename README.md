@@ -1,7 +1,7 @@
 # 🌤️ Weather: Ho Chi Minh 29.0°C | 39%→19% | 03:40 | Last update: 03:40
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:080808,50:161616,100:1c1c1c&height=220&section=header&text=bieehoang&fontSize=65&fontColor=d4a017&fontAlignY=38&desc=DevOps%20Engineer%20%7C%20Linux%20%7C%20Docker%20%7C%20Shell&descAlignY=58&descSize=16&animation=fadeIn" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:080808,50:161616,100:1c1c1c&height=220&section=header&text=root@Mesa:~&fontSize=65&fontColor=d4a017&fontAlignY=38&desc=DevOps%20Engineer%20%7C%20Linux%20%7C%20Docker%20%7C%20Shell&descAlignY=58&descSize=16&animation=fadeIn" width="100%"/>
 
 </div>
 
@@ -14,7 +14,7 @@ bieehoang
 → Linux · Docker · Nginx · Shell Scripting
 
 ❯ uptime --pretty
-up 3 years, maintaining systems at scale
+up 4+ years, maintaining systems at scale
 ```
 
 ---
@@ -79,6 +79,6 @@ up 3 years, maintaining systems at scale
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1c1c1c,50:161616,100:080808&height=120&section=footer&animation=fadeIn" width="100%"/>
 
-<sub><code>[bieehoang] — System online. All services running. © 2019</code></sub>
+<sub><code>[bieehoang] — System online. All services running. © 2001</code></sub>
 
 </div>
