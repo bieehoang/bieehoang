@@ -618,6 +618,7 @@ section { padding: 7rem 0; }
   padding: .25rem .7rem;
   border-radius: 2px;
 }
+.tag-volunteer { background: rgba(168,85,247,0.1); color: #c084fc; border: 1px solid rgba(168,85,247,0.25); }
 .tag-devops { background: rgba(212,160,23,0.15); color: var(--gold-bright); border: 1px solid rgba(212,160,23,0.3); }
 .tag-web    { background: rgba(100,150,255,0.1);  color: #93b4ff;           border: 1px solid rgba(100,150,255,0.25); }
 .tag-py     { background: rgba(74,222,128,0.1);   color: #86efac;           border: 1px solid rgba(74,222,128,0.2); }
