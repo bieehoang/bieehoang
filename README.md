@@ -69,7 +69,7 @@ up 3 years, maintaining systems at scale
 
 [![Email](https://img.shields.io/badge/Email-d4a017?style=for-the-badge&logo=gmail&logoColor=080808)](mailto:dev.bieehoang.io@gmail.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-d4a017?style=for-the-badge&logo=linkedin&logoColor=080808)](https://linkedin.com/in/bieehoang/)
-[![GitHub](https://img.shields.io/badge/GitHub-d4a017?style=for-the-badge&logo=github&logoColor=080808)](https://github.com/Qiese)
+[![GitHub](https://img.shields.io/badge/GitHub-d4a017?style=for-the-badge&logo=github&logoColor=080808)](https://github.com/bieehoang)
 [![Portfolio](https://img.shields.io/badge/Portfolio-d4a017?style=for-the-badge&logo=vercel&logoColor=080808)](https://bieehoang.github.io/bieehoang)
 
 </div>
