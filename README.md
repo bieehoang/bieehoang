@@ -1,64 +1,76 @@
 # 🌤️ Weather: Ho Chi Minh 29.0°C | 39%→19% | 03:40 | Last update: 03:40
 <div align="center">
 
-<!-- Animated header -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=200&section=header&text=bieehoang&fontSize=60&fontColor=ffffff&fontAlignY=38&desc=Developer%20%7C%20Mesa&descAlignY=58&descSize=18&animation=fadeIn" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:080808,50:161616,100:1c1c1c&height=220&section=header&text=bieehoang&fontSize=65&fontColor=d4a017&fontAlignY=38&desc=DevOps%20Engineer%20%7C%20Linux%20%7C%20Docker%20%7C%20Shell&descAlignY=58&descSize=16&animation=fadeIn" width="100%"/>
 
-<br/>
+</div>
 
-<!-- Profile image -->
-<img src="https://user-images.githubusercontent.com/99249759/197262163-900e2e5f-b197-4921-abc2-131b40de44fa.png" width="500" style="border-radius: 12px;" alt="My CV"/>
+```bash
+❯ whoami
+bieehoang
+
+❯ cat /etc/role
+→ DevOps Engineer
+→ Linux · Docker · Nginx · Shell Scripting
+
+❯ uptime --pretty
+up 3 years, maintaining systems at scale
+```
+
+---
+
+## ⚙️ Arsenal
+
+<div align="center">
+
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
+![Shell](https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=d4a017)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+
+</div>
+
+---
+
+## 🚀 Projects
+
+| # | Project | Stack | Type |
+|---|---------|-------|------|
+| 01 | [System Maintenance Scripts](https://github.com/Qiese) | Bash · Linux · Cron | DevOps |
+| 02 | [Docker Compose Infra Stack](https://github.com/Qiese) | Docker · Nginx · Shell | DevOps |
+| 03 | [Bamboo To-Do](https://github.com/Qiese/django.bamboo_todo) | Django · SCSS · HTML5 | Web |
+| 04 | [Bamboo Service](https://github.com/Qiese/bamboo__service) | JavaScript · SCSS · HTML5 | Web |
+| 05 | [Music Application](https://github.com/Qiese/Music-Application) | JavaScript · SCSS · HTML5 | Web |
+| 06 | [Python Tutorial](https://github.com/Qiese/PythonTutorial) | Python · Git | Python |
+
+---
+
+## 📊 Stats
+
+<div align="center">
+
+<img src="https://streak-stats.demolab.com?user=bieehoang&theme=dark&hide_border=true&background=080808&ring=d4a017&fire=d4a017&currStreakLabel=d4a017&sideLabels=666660&dates=666660&sideNums=e8e8e0&currStreakNum=e8e8e0" />
 
 <br/><br/>
 
-<!-- Badges -->
-![Always Update](https://img.shields.io/badge/Status-Always%20Update-38bdf8?style=for-the-badge&logo=github&logoColor=white)
-![Open to Connect](https://img.shields.io/badge/Open%20To-Connect-22c55e?style=for-the-badge&logo=handshake&logoColor=white)
-![Portfolio](https://img.shields.io/badge/Portfolio-Live-f59e0b?style=for-the-badge&logo=vercel&logoColor=white)
+<img src="https://github-readme-stats.vercel.app/api?username=bieehoang&show_icons=true&hide_border=true&bg_color=080808&title_color=d4a017&icon_color=d4a017&text_color=e8e8e0" />
 
 </div>
 
 ---
 
-## 👋 About Me
-
-> A developer who loves building clean, functional, and beautiful things for the web.
-> This is my personal CV/portfolio website — always being updated with new projects and improvements.
-
-🌐 **Live at:** [bieehoang.github.io/bieehoang](https://bieehoang.github.io/bieehoang)
-
----
-
-## 🛠️ Tech Stack
+## 📬 Contact
 
 <div align="center">
 
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![jQuery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
-
-</div>
-
----
-
-## 🔥 Streak
-
-<div align="center">
-
-<img src="https://streak-stats.demolab.com?user=bieehoang&theme=tokyonight&hide_border=true&background=0d1117&ring=38bdf8&fire=f59e0b&currStreakLabel=38bdf8" />
-
-</div>
-
----
-
-## 📬 Connect With Me
-
-<div align="center">
-
-[![GitHub](https://img.shields.io/badge/GitHub-bieehoang-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/bieehoang)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-38bdf8?style=for-the-badge&logo=googlechrome&logoColor=white)](https://bieehoang.github.io/bieehoang)
+[![Email](https://img.shields.io/badge/Email-d4a017?style=for-the-badge&logo=gmail&logoColor=080808)](mailto:dev.bieehoang.io@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-d4a017?style=for-the-badge&logo=linkedin&logoColor=080808)](https://linkedin.com/in/bieehoang/)
+[![GitHub](https://img.shields.io/badge/GitHub-d4a017?style=for-the-badge&logo=github&logoColor=080808)](https://github.com/Qiese)
+[![Portfolio](https://img.shields.io/badge/Portfolio-d4a017?style=for-the-badge&logo=vercel&logoColor=080808)](https://bieehoang.github.io/bieehoang)
 
 </div>
 
@@ -66,14 +78,8 @@
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:2c5364,50:203a43,100:0f2027&height=120&section=footer&animation=fadeIn" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1c1c1c,50:161616,100:080808&height=120&section=footer&animation=fadeIn" width="100%"/>
 
-<sub>Thank you for visiting! Feel free to reach out if you have any questions. 🙌</sub>
-
-<br/>
-
-**Wish you have a great day! ☀️**
-
-<sub>Copyright © bieehoang</sub>
+<sub><code>[bieehoang] — System online. All services running. © 2024</code></sub>
 
 </div>
