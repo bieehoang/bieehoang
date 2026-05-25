@@ -82,3 +82,12 @@ up 4+ years, maintaining systems at scale
 <sub><code>[bieehoang] — System online. All services running. © 2001</code></sub>
 
 </div>
+
+<!-- WEATHER_START -->
+**🌤️ Weather Update** — *22:32 25/05/2026 ICT*
+
+☀️ **Ho Chi Minh** — 30.0°C | Rain: 47% → 43% | `22:32`
+☁️ **Florida** — 30.8°C | Rain: 0% → 0% | `11:32`
+☁️ **Singapore** — 26.9°C | Rain: 0% → 0% | `23:32`
+☁️ **Hanoi** — 33.0°C | Rain: 0% → 0% | `22:32`
+<!-- WEATHER_END -->
