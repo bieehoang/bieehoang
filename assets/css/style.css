@@ -807,3 +807,47 @@ section { padding: 7rem 0; }
 ::-webkit-scrollbar-track { background: var(--black); }
 ::-webkit-scrollbar-thumb { background: rgba(212,160,23,0.3); border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+/* ═══════════════════════════════════════════
+   TECH ZOOM INTRO (Mesa)
+═══════════════════════════════════════════ */
+:root{
+    --tzi-bg:#080808;
+    --tzi-bg2:#111214;
+    --tzi-amber:#d4a017;
+    --tzi-amber-soft:rgba(212,160,23,0.55);
+    --tzi-green:#4ade80;
+    --tzi-green-soft:rgba(74,222,128,0.55);
+  }
+  #tech-intro{
+    position:fixed; inset:0; z-index:10000;
+    background:radial-gradient(ellipse at center, var(--tzi-bg2) 0%, var(--tzi-bg) 70%);
+    display:flex; align-items:center; justify-content:center;
+    transition:opacity 1.1s ease;
+  }
+  #tech-intro.fading{ opacity:0; pointer-events:none; }
+  #tech-canvas{ position:absolute; inset:0; width:100%; height:100%; }
+  #tech-caption{
+    position:absolute; bottom:14%; left:0; right:0;
+    text-align:center; font-family:'Share Tech Mono',monospace;
+    color:var(--tzi-amber); letter-spacing:0.3em; font-size:12px;
+    text-transform:uppercase; opacity:0.85;
+    text-shadow:0 0 12px var(--tzi-amber-soft);
+    transition:opacity .5s ease;
+  }
+  #tech-skip{
+    position:absolute; top:24px; right:28px;
+    font-family:'Share Tech Mono',monospace; font-size:12px;
+    color:var(--tzi-amber); background:transparent;
+    border:1px solid var(--tzi-amber-soft); border-radius:4px;
+    padding:6px 14px; cursor:pointer; letter-spacing:0.15em;
+    opacity:0.7; transition:opacity .2s ease;
+  }
+  #tech-skip:hover{ opacity:1; }
+  #tech-enter{
+    position:absolute; bottom:8%; left:0; right:0; text-align:center;
+    font-family:'Share Tech Mono',monospace; color:var(--tzi-green);
+    font-size:13px; letter-spacing:0.25em; opacity:0;
+    text-shadow:0 0 10px var(--tzi-green-soft);
+    transition:opacity .6s ease; pointer-events:none;
+  }
+  #tech-enter.show{ opacity:0.95; pointer-events:auto; cursor:pointer; }
