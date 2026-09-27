@@ -396,7 +396,7 @@
 
 <div id="tech-intro">
   <canvas id="tech-canvas"></canvas>
-  <div id="tech-caption">initializing session</div>
+  <div id="tech-caption">compiling source</div>
   <div id="tech-enter">click anywhere to enter →</div>
   <button id="tech-skip">skip</button>
 </div>
@@ -412,10 +412,9 @@
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var alreadySeen  = sessionStorage.getItem('techIntroSeen') === '1';
-
   if (reduceMotion || alreadySeen){ finish(true); return; }
 
-  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+  var DPR = Math.min(window.devicePixelRatio || 1, 1.5);
   function resize(){
     canvas.width  = window.innerWidth  * DPR;
     canvas.height = window.innerHeight * DPR;
@@ -427,272 +426,291 @@
   resize();
 
   var AMBER = '212,160,23';
-  var CYAN  = '74,222,128';
+  var GREEN = '74,222,128';
+  var GLYPHS = ['0','1','{','}','<','>','=',';','/','λ','0x1F','0xFF','=>','&&','01','10'];
+  function glyph(i){ return GLYPHS[i % GLYPHS.length]; }
+  function ease(t){ return t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2; } // easeInOutCubic
 
-  // ---------- scene 1: source → code ----------
+  // ---- prerendered glow sprites (avoid per-particle shadowBlur = the main jank source) ----
+  function makeSprite(rgb){
+    var s = 48, c = document.createElement('canvas');
+    c.width = c.height = s;
+    var g = c.getContext('2d');
+    var grad = g.createRadialGradient(s/2,s/2,0,s/2,s/2,s/2);
+    grad.addColorStop(0,'rgba('+rgb+',0.9)');
+    grad.addColorStop(0.4,'rgba('+rgb+',0.35)');
+    grad.addColorStop(1,'rgba('+rgb+',0)');
+    g.fillStyle = grad;
+    g.fillRect(0,0,s,s);
+    return c;
+  }
+  var glowAmber = makeSprite(AMBER);
+  var glowGreen = makeSprite(GREEN);
+  function drawGlow(sprite,x,y,r){
+    ctx.drawImage(sprite, x-r, y-r, r*2, r*2);
+  }
+
+  ctx.font = '11px "Share Tech Mono", monospace';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+
+  // ---------- perf: measure once, then commit to a quality tier ----------
+  var LITE = false, sampleFrames = 0, sampleAcc = 0, decided = false;
+
+  // ---------- scene data (precomputed once = no per-frame allocation) ----------
   var codeLines = [];
   (function seedCode(){
     var kw = ['const','function','await','return','class','import','if','for','=>','async','export','new'];
     var body = ['fetchNode(','render(state)','buildIndex()','deploy.sh','ctx.socket','node.next','render.diff','bind(this)'];
-    for (var i=0;i<26;i++){
-      var s = kw[(i*7)%kw.length] + ' ' + body[(i*3)%body.length] + (i%3?';':'');
-      codeLines.push(s);
+    for (var i=0;i<24;i++) codeLines.push(kw[(i*7)%kw.length]+' '+body[(i*3)%body.length]+(i%3?';':''));
+  })();
+
+  var traces = [];
+  (function seedTraces(){
+    var n = 26; // fewer traces, no shadow per-trace = fine at this count
+    for (var i=0;i<n;i++){
+      var ang = (i/n)*Math.PI*2 + (i%2?0.15:0);
+      traces.push({ang:ang, len:120+(i%5)*55, bend:0.4+0.3*((i*13)%5)/5, showByte:(i%3===0)});
     }
   })();
+
+  var latticePts = [];
+  (function seedLattice(){
+    var rows=6, cols=8, spacing=27, idx=0;
+    for (var r=-rows;r<=rows;r++){
+      for (var c=-cols;c<=cols;c++){
+        var offset = (r%2)? spacing/2:0;
+        var x = c*spacing+offset, y = r*spacing*0.86;
+        if (Math.sqrt(x*x+y*y) > 230) continue; // cull outside view up-front, not per-frame
+        latticePts.push({x:x,y:y,g:glyph(idx++)});
+      }
+    }
+  })();
+
+  var qParticles = [];
+  (function seedQ(){
+    for (var i=0;i<42;i++){
+      qParticles.push({ang:Math.random()*Math.PI*2, r:20+Math.random()*160,
+        speed:0.3+Math.random()*0.8, phase:Math.random()*Math.PI*2,
+        amber:Math.random()<0.5, g:glyph(i)});
+    }
+  })();
+
+  // ---------- stage 1: source ----------
   function drawCode(w,h,t){
-    ctx.save();
-    ctx.translate(w/2,h/2);
-    var zoom = 1 + t*2.2;
-    ctx.scale(zoom,zoom);
-    ctx.translate(-w/2,-h/2);
-    ctx.font = '15px "Share Tech Mono", monospace';
-    ctx.textBaseline = 'top';
-    var scrollY = (t*140) % 22;
+    var z = 1 + ease(t)*2.2;
+    ctx.save(); ctx.translate(w/2,h/2); ctx.scale(z,z); ctx.translate(-w/2,-h/2);
+    ctx.textAlign='left';
+    var scrollY = (t*120) % 22;
     for (var i=0;i<codeLines.length;i++){
       var y = i*22 - scrollY + h*0.18;
       if (y < -30 || y > h+30) continue;
-      var dim = 0.35 + 0.5*Math.sin((i*0.6)+t*4);
+      var dim = 0.35 + 0.45*Math.sin((i*0.6)+t*3.4);
       ctx.fillStyle = 'rgba('+AMBER+','+Math.max(0.12,dim)+')';
       ctx.fillText(codeLines[i], w*0.18, y);
     }
-    // a highlighted "chip" outline emerging from the code block
-    var boxA = Math.min(1, t*1.6);
+    ctx.textAlign='center';
+    var boxA = Math.min(1, ease(t)*1.6);
     ctx.strokeStyle = 'rgba('+AMBER+','+boxA+')';
-    ctx.shadowColor = 'rgba('+AMBER+',0.9)';
-    ctx.shadowBlur = 18;
     ctx.lineWidth = 2;
-    var bw = 90, bh = 90;
-    ctx.strokeRect(w/2-bw/2, h/2-bh/2, bw, bh);
-    ctx.shadowBlur = 0;
+    ctx.strokeRect(w/2-45, h/2-45, 90, 90);
     ctx.restore();
   }
 
-  // ---------- scene 2: circuit board ----------
-  var traces = [];
-  (function seedTraces(){
-    var n = 46;
-    for (var i=0;i<n;i++){
-      var ang = (i/n)*Math.PI*2 + (i%2?0.15:0);
-      var len = 120 + (i%5)*60;
-      traces.push({ang:ang, len:len, bendAt:0.4+0.3*((i*13)%5)/5, seg:(i%3)});
-    }
-  })();
+  // ---------- stage 2: circuit (code flowing as data through traces) ----------
   function drawCircuit(w,h,t){
-    ctx.save();
-    ctx.translate(w/2,h/2);
-    var zoom = 0.6 + t*4.2;
-    ctx.scale(zoom,zoom);
-    ctx.lineWidth = 1.4;
-    ctx.shadowColor = 'rgba('+AMBER+',0.8)';
-    ctx.shadowBlur = 10;
-    for (var i=0;i<traces.length;i++){
-      var tr = traces[i];
-      var reach = Math.min(1, t*1.4 + i*0.01);
-      var x1 = Math.cos(tr.ang)*tr.len*tr.bendAt*reach;
-      var y1 = Math.sin(tr.ang)*tr.len*tr.bendAt*reach;
-      var x2 = Math.cos(tr.ang)*tr.len*reach;
-      var y2 = Math.sin(tr.ang+0.3)*tr.len*reach;
-      ctx.strokeStyle = 'rgba('+AMBER+','+(0.25+0.35*reach)+')';
-      ctx.beginPath();
-      ctx.moveTo(0,0); ctx.lineTo(x1,y1); ctx.lineTo(x2,y2);
-      ctx.stroke();
-      ctx.fillStyle = 'rgba('+AMBER+',0.9)';
-      ctx.beginPath(); ctx.arc(x2,y2,1.6,0,Math.PI*2); ctx.fill();
+    var et = ease(t);
+    ctx.save(); ctx.translate(w/2,h/2); ctx.rotate(t*0.35);
+    var z = 0.6 + et*4.2;
+    ctx.scale(z,z);
+    ctx.lineWidth = 1.3;
+    var n = LITE ? traces.length/2 : traces.length;
+    for (var i=0;i<n;i++){
+      var tr = traces[i|0];
+      var reach = Math.min(1, et*1.4 + i*0.012);
+      var x1 = Math.cos(tr.ang)*tr.len*tr.bend*reach, y1 = Math.sin(tr.ang)*tr.len*tr.bend*reach;
+      var x2 = Math.cos(tr.ang)*tr.len*reach, y2 = Math.sin(tr.ang+0.3)*tr.len*reach;
+      ctx.strokeStyle = 'rgba('+AMBER+','+(0.22+0.35*reach)+')';
+      ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+      if (tr.showByte && reach>0.5){
+        ctx.fillStyle = 'rgba('+AMBER+',0.85)';
+        ctx.fillText(tr.g || glyph(i), x2, y2);
+      } else {
+        ctx.fillStyle = 'rgba('+AMBER+',0.8)';
+        ctx.beginPath(); ctx.arc(x2,y2,1.4,0,Math.PI*2); ctx.fill();
+      }
     }
-    // central die
-    var dieA = Math.min(1,t*1.3);
-    ctx.shadowBlur = 20;
-    ctx.strokeStyle = 'rgba('+AMBER+','+dieA+')';
+    ctx.strokeStyle = 'rgba('+AMBER+','+Math.min(1,et*1.3)+')';
     ctx.lineWidth = 2;
     ctx.strokeRect(-22,-22,44,44);
     ctx.restore();
   }
 
-  // ---------- scene 3: silicon lattice ----------
+  // ---------- stage 3: silicon lattice built from bits ----------
   function drawSilicon(w,h,t){
-    ctx.save();
-    ctx.translate(w/2,h/2);
-    var zoom = 0.5 + t*5.5;
-    ctx.scale(zoom,zoom);
+    var et = ease(t);
+    ctx.save(); ctx.translate(w/2,h/2); ctx.rotate(t*0.22);
+    var z = 0.5 + et*5.5;
+    ctx.scale(z,z);
     var rot = t*0.4;
-    var rows=7, cols=7, spacing=26;
-    ctx.lineWidth = 0.8;
-    for (var r=-rows;r<=rows;r++){
-      for (var c=-cols;c<=cols;c++){
-        var offset = (r%2)? spacing/2:0;
-        var x = c*spacing+offset;
-        var y = r*spacing*0.86;
-        var wob = Math.sin(rot*2 + r*0.7 + c*0.5)*2.2;
-        var px = x + wob, py = y + wob*0.6;
-        var dist = Math.sqrt(px*px+py*py);
-        var a = Math.max(0, 0.55 - dist/260);
-        if (a<=0) continue;
-        // bonds to neighbors
-        ctx.strokeStyle = 'rgba('+CYAN+','+(a*0.5)+')';
-        ctx.beginPath();
-        ctx.moveTo(px,py); ctx.lineTo(px+spacing*0.5, py+spacing*0.43);
-        ctx.moveTo(px,py); ctx.lineTo(px-spacing*0.5, py+spacing*0.43);
-        ctx.stroke();
-        // atom node
-        ctx.fillStyle = 'rgba('+AMBER+','+(a+0.15)+')';
-        ctx.shadowColor = 'rgba('+AMBER+',0.8)';
-        ctx.shadowBlur = 8;
-        ctx.beginPath(); ctx.arc(px,py,2.4,0,Math.PI*2); ctx.fill();
-      }
+    var step = LITE ? 2 : 1;
+    ctx.lineWidth = 0.7;
+    ctx.strokeStyle = 'rgba('+GREEN+',0.28)';
+    ctx.beginPath();
+    for (var i=0;i<latticePts.length;i+=step){
+      var p = latticePts[i];
+      var wob = Math.sin(rot*2 + p.x*0.05)*2.2;
+      var px = p.x+wob, py = p.y+wob*0.6;
+      ctx.moveTo(px,py); ctx.lineTo(px+13, py+11);
+      ctx.moveTo(px,py); ctx.lineTo(px-13, py+11);
+    }
+    ctx.stroke();
+    for (var j=0;j<latticePts.length;j+=step){
+      var q = latticePts[j];
+      var wob2 = Math.sin(rot*2 + q.x*0.05)*2.2;
+      var qx = q.x+wob2, qy = q.y+wob2*0.6;
+      var dist = Math.sqrt(qx*qx+qy*qy);
+      var a = Math.max(0, 0.65 - dist/260);
+      if (a<=0) continue;
+      ctx.fillStyle = 'rgba('+AMBER+','+(a+0.15)+')';
+      ctx.fillText(q.g, qx, qy);
     }
     ctx.restore();
   }
 
-  // ---------- scene 4: single atom ----------
+  // ---------- stage 4: single bit as an atom ----------
   function drawAtom(w,h,t){
-    ctx.save();
-    ctx.translate(w/2,h/2);
-    var zoom = 0.4 + t*6.5;
-    ctx.scale(zoom,zoom);
+    var et = ease(t);
+    ctx.save(); ctx.translate(w/2,h/2);
+    var z = 0.4 + et*6.5;
+    ctx.scale(z,z);
     var fadeOrbits = Math.max(0, 1 - t*1.3);
-    // orbitals
-    var orbits = [ {rx:70,ry:26,tilt:0.3,speed:1.0},
-                   {rx:55,ry:55,tilt:1.1,speed:-0.7},
-                   {rx:80,ry:38,tilt:-0.6,speed:0.5} ];
+    var orbits = [ {rx:70,ry:26,tilt:0.3,speed:1.0,g:'0'},
+                   {rx:55,ry:55,tilt:1.1,speed:-0.7,g:'1'},
+                   {rx:80,ry:38,tilt:-0.6,speed:0.5,g:'{'} ];
     ctx.lineWidth = 0.8;
     for (var i=0;i<orbits.length;i++){
       var o = orbits[i];
-      ctx.save();
-      ctx.rotate(o.tilt);
-      ctx.strokeStyle = 'rgba('+CYAN+','+(0.25*fadeOrbits)+')';
+      ctx.save(); ctx.rotate(o.tilt + t*0.3);
+      ctx.strokeStyle = 'rgba('+GREEN+','+(0.22*fadeOrbits)+')';
       ctx.beginPath(); ctx.ellipse(0,0,o.rx,o.ry,0,0,Math.PI*2); ctx.stroke();
       var ang = t*8*o.speed;
       var ex = Math.cos(ang)*o.rx, ey = Math.sin(ang)*o.ry;
-      ctx.fillStyle = 'rgba('+CYAN+',0.9)';
-      ctx.shadowColor='rgba('+CYAN+',0.9)'; ctx.shadowBlur=10;
-      ctx.beginPath(); ctx.arc(ex,ey,2.2,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle = 'rgba('+GREEN+',0.95)';
+      ctx.fillText(o.g, ex, ey);
       ctx.restore();
     }
-    // nucleus growing as we plunge in
-    var coreR = 6 + t*10;
-    var grad = ctx.createRadialGradient(0,0,0,0,0,coreR);
-    grad.addColorStop(0,'rgba('+AMBER+',1)');
-    grad.addColorStop(1,'rgba('+AMBER+',0)');
-    ctx.fillStyle = grad;
-    ctx.beginPath(); ctx.arc(0,0,coreR,0,Math.PI*2); ctx.fill();
+    var coreR = 8 + t*14;
+    if (!LITE) drawGlow(glowAmber, 0, 0, coreR*2.2);
+    ctx.fillStyle = 'rgba(255,255,255,'+Math.min(1,t*1.4)+')';
+    ctx.fillText('1', 0, 0);
     ctx.restore();
   }
 
-  // ---------- scene 5: quantum field ----------
-  var qParticles = [];
-  (function seedQ(){
-    for (var i=0;i<70;i++){
-      qParticles.push({
-        ang: Math.random()*Math.PI*2,
-        r: 20 + Math.random()*160,
-        speed: 0.3 + Math.random()*0.8,
-        phase: Math.random()*Math.PI*2,
-        c: Math.random()<0.5? AMBER: CYAN
-      });
-    }
-  })();
+  // ---------- stage 5: quantum field of bits, resolving into MESA ----------
   function drawQuantum(w,h,t){
-    ctx.save();
-    ctx.translate(w/2,h/2);
-    // interference waves
+    ctx.save(); ctx.translate(w/2,h/2); ctx.rotate(t*0.15);
     ctx.lineWidth = 1;
-    for (var wI=0; wI<3; wI++){
-      ctx.strokeStyle = 'rgba('+(wI%2? CYAN:AMBER)+','+(0.12+0.06*wI)+')';
+    var waveCount = LITE ? 1 : 2;
+    for (var wI=0; wI<waveCount; wI++){
+      ctx.strokeStyle = 'rgba('+(wI%2? GREEN:AMBER)+','+(0.12+0.06*wI)+')';
       ctx.beginPath();
-      for (var x=-w/2; x<w/2; x+=6){
+      for (var x=-w/2; x<w/2; x+=8){
         var y = Math.sin(x*0.02 + t*6 + wI*2) * (30+wI*18) * (1-t*0.5);
         if (x===-w/2) ctx.moveTo(x,y); else ctx.lineTo(x,y);
       }
       ctx.stroke();
     }
-    // converging particles -> single point of light
     var converge = Math.min(1, t*1.1);
-    for (var i=0;i<qParticles.length;i++){
+    var step = LITE ? 2 : 1;
+    for (var i=0;i<qParticles.length;i+=step){
       var p = qParticles[i];
       var r = p.r * (1-converge) + 2*converge;
       var a = p.ang + t*p.speed;
-      var flicker = 0.4 + 0.6*Math.abs(Math.sin(t*10 + p.phase));
+      var flicker = 0.4 + 0.5*Math.abs(Math.sin(t*10 + p.phase));
       var x = Math.cos(a)*r, y = Math.sin(a)*r;
-      ctx.fillStyle = 'rgba('+p.c+','+(flicker*(0.5+converge*0.5))+')';
-      ctx.shadowColor = 'rgba('+p.c+',0.9)'; ctx.shadowBlur = 6;
-      ctx.beginPath(); ctx.arc(x,y,1.6,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle = 'rgba('+(p.amber?AMBER:GREEN)+','+(flicker*(0.6+converge*0.4))+')';
+      ctx.fillText(p.g, x, y);
     }
-    // final singularity flash
     var flashR = converge*converge*140;
-    var grad = ctx.createRadialGradient(0,0,0,0,0,flashR);
+    var grad = ctx.createRadialGradient(0,0,0,0,0,Math.max(flashR,1));
     grad.addColorStop(0,'rgba(255,255,255,'+(0.9*converge)+')');
     grad.addColorStop(0.3,'rgba('+AMBER+','+(0.5*converge)+')');
     grad.addColorStop(1,'rgba('+AMBER+',0)');
     ctx.fillStyle = grad;
-    ctx.beginPath(); ctx.arc(0,0,flashR,0,Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(0,0,Math.max(flashR,1),0,Math.PI*2); ctx.fill();
 
-    // logo resolving out of the singularity
     var logoA = Math.max(0, (converge - 0.55) / 0.45);
     if (logoA > 0){
-      var scale = 0.7 + logoA*0.3;
       ctx.save();
-      ctx.scale(scale,scale);
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
+      ctx.scale(0.7+logoA*0.3, 0.7+logoA*0.3);
       ctx.font = '700 46px "Share Tech Mono", monospace';
-      ctx.shadowColor = 'rgba('+AMBER+',0.95)';
-      ctx.shadowBlur = 22*logoA;
       ctx.fillStyle = 'rgba(255,255,255,'+logoA+')';
       ctx.fillText('MESA', 0, 0);
       ctx.font = '400 12px "Share Tech Mono", monospace';
-      ctx.shadowBlur = 10*logoA;
       ctx.fillStyle = 'rgba('+AMBER+','+(logoA*0.85)+')';
       ctx.fillText('S Y S T E M   O N L I N E', 0, 34);
       ctx.restore();
     }
+    ctx.font = '11px "Share Tech Mono", monospace';
     ctx.restore();
   }
 
   var STAGES = [
-    {draw:drawCode,    dur:3000, label:'compiling source'},
-    {draw:drawCircuit, dur:3000, label:'tracing the circuit'},
-    {draw:drawSilicon, dur:3200, label:'entering the silicon lattice'},
-    {draw:drawAtom,    dur:3200, label:'inside the atom'},
-    {draw:drawQuantum, dur:3600, label:'resolving identity: mesa'}
+    {draw:drawCode,    dur:2800, label:'compiling source'},
+    {draw:drawCircuit, dur:2800, label:'source flowing through the circuit'},
+    {draw:drawSilicon, dur:3000, label:'source crystallizing into silicon'},
+    {draw:drawAtom,    dur:3000, label:'down to a single bit'},
+    {draw:drawQuantum, dur:3400, label:'resolving identity: mesa'}
   ];
   var totalDur = STAGES.reduce(function(s,x){return s+x.dur;},0);
 
-  var start = null;
-  var finished = false;
+  var start = null, lastNow = null, finished = false;
 
   function frame(now){
     if (finished) return;
-    if (start === null) start = now;
+    if (start === null){ start = now; lastNow = now; }
+    var dt = now - lastNow; lastNow = now;
+
+    if (!decided){
+      sampleFrames++; sampleAcc += dt;
+      if (sampleFrames >= 40){
+        LITE = (sampleAcc / sampleFrames) > 26; // avg >26ms/frame ≈ under ~38fps
+        decided = true;
+      }
+    }
+
     var elapsed = now - start;
     var w = window.innerWidth, h = window.innerHeight;
     ctx.clearRect(0,0,w,h);
+
+    var globalT = Math.min(1, elapsed/totalDur);
+    ctx.save();
+    ctx.translate(w/2,h/2);
+    ctx.rotate(globalT * 1.1); // the whole dive slowly orbits as it zooms
+    ctx.translate(-w/2,-h/2);
 
     var acc = 0, idx = 0;
     for (; idx<STAGES.length; idx++){
       if (elapsed < acc + STAGES[idx].dur) break;
       acc += STAGES[idx].dur;
     }
-    if (idx >= STAGES.length){
-      finish(false);
-      return;
-    }
+    if (idx >= STAGES.length){ ctx.restore(); finish(false); return; }
+
     var stage = STAGES[idx];
     var localT = Math.min(1, (elapsed - acc) / stage.dur);
     stage.draw(w,h,localT);
 
-    // crossfade into next stage for a continuous "dive" feel
     if (localT > 0.72 && idx+1 < STAGES.length){
       var fadeT = (localT - 0.72) / 0.28;
-      ctx.save();
-      ctx.globalAlpha = fadeT;
+      ctx.save(); ctx.globalAlpha = fadeT;
       STAGES[idx+1].draw(w,h, fadeT*0.35);
       ctx.restore();
     }
+    ctx.restore();
 
     if (caption.textContent !== stage.label) caption.textContent = stage.label;
-    if (elapsed > totalDur - 1400 && !enterEl.classList.contains('show')){
-      enterEl.classList.add('show');
-    }
+    if (elapsed > totalDur - 1400 && !enterEl.classList.contains('show')) enterEl.classList.add('show');
 
     requestAnimationFrame(frame);
   }
@@ -700,10 +718,7 @@
   function finish(instant){
     finished = true;
     sessionStorage.setItem('techIntroSeen','1');
-    if (instant){
-      overlay.style.display = 'none';
-      return;
-    }
+    if (instant){ overlay.style.display = 'none'; return; }
     overlay.classList.add('fading');
     setTimeout(function(){ overlay.style.display = 'none'; }, 1150);
   }
@@ -713,6 +728,20 @@
 
   requestAnimationFrame(frame);
 })();
+</script>
+<script>
+// ── Disable copy / right-click / double-click text selection ──
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('copy', function(e){ e.preventDefault(); });
+document.addEventListener('cut', function(e){ e.preventDefault(); });
+document.addEventListener('selectstart', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+  var k = e.key.toLowerCase();
+  if ((e.ctrlKey || e.metaKey) && (k === 'c' || k === 'u' || k === 's')){
+    e.preventDefault();
+  }
+});
 </script>
 </body>
 </html>

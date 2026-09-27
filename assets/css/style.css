@@ -808,15 +808,12 @@ section { padding: 7rem 0; }
 ::-webkit-scrollbar-thumb { background: rgba(212,160,23,0.3); border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 /* ═══════════════════════════════════════════
-   TECH ZOOM INTRO (Mesa)
+   TECH ZOOM INTRO v2 (Mesa) — smoother, code-glyph themed
 ═══════════════════════════════════════════ */
 :root{
-    --tzi-bg:#080808;
-    --tzi-bg2:#111214;
-    --tzi-amber:#d4a017;
-    --tzi-amber-soft:rgba(212,160,23,0.55);
-    --tzi-green:#4ade80;
-    --tzi-green-soft:rgba(74,222,128,0.55);
+    --tzi-bg:#080808; --tzi-bg2:#111214;
+    --tzi-amber:#d4a017; --tzi-amber-soft:rgba(212,160,23,0.55);
+    --tzi-green:#4ade80; --tzi-green-soft:rgba(74,222,128,0.55);
   }
   #tech-intro{
     position:fixed; inset:0; z-index:10000;
@@ -851,3 +848,19 @@ section { padding: 7rem 0; }
     transition:opacity .6s ease; pointer-events:none;
   }
   #tech-enter.show{ opacity:0.95; pointer-events:auto; cursor:pointer; }
+
+/* ═══════════════════════════════════════════
+   DISABLE TEXT SELECTION / COPY
+═══════════════════════════════════════════ */
+html, body, * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+input, textarea {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text; /* keep form fields usable, if you ever add any */
+}
